@@ -1,0 +1,109 @@
+/*header*/
+.header{
+    align-items: center;
+    position: relative;
+    border-bottom: 2px solid #000;
+    padding:0;
+    display: flex;
+    justify-content: space-between;
+    background: #FF4D00
+}
+
+
+.logo{
+    margin-left: 190px;
+}
+
+.logo a{
+    text-decoration: none;
+    font-size: 28px;
+    color: #000;
+}
+
+.logo p{
+    margin-bottom: 0;
+}
+
+.member-ctn{
+    display: flex;
+    right:0px;
+    top:0px;
+}
+
+.text-ctn{
+    display: flex;
+    align-items: center;
+    padding-right:25px
+}
+
+.member-ctn p, .submit{
+    font-size:13px;
+}
+
+.register-login{
+    padding-left:15px;
+    font-size: 13px;
+}
+
+.register-login a{
+    text-decoration: none;
+    color: #000;
+    font-weight: 600;
+}
+
+.register-login img{
+    width: 20px;
+    height: 20px;
+}
+
+.member-ctn .submit{
+    padding:16px 50px;
+    background: #000;
+    color: #fff;
+    text-decoration: none;
+}
+
+.slide-text marquee{
+    width: 100%;
+    padding: 10px 0;
+    border-bottom: 1px solid #000;
+    background: #fff;
+    z-index: 9;
+}
+
+marquee span{
+    padding: 0 50px;
+    color: #FF4D00;
+}
+
+.fixBar{
+    position: fixed;
+    top:0;
+    background: #fff;
+}
+
+@media(max-width: 768px){
+    .header{
+        background: #fff;
+    }
+
+    .isDesktop{
+        display: none;
+    }
+
+    .isMobile{
+        display: flex !important;
+    }
+
+    .isMobile .logo{
+        margin-left: 42%;
+    }
+
+    .header{
+        padding: 10px;
+    }
+
+    .member-ctn{
+        display: none;
+    }
+}

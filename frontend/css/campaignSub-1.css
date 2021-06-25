@@ -1,0 +1,113 @@
+.delFile:hover{
+    cursor: pointer;
+}
+
+footer{
+    position: relative;
+}
+
+.input-field select:not([value=""]){
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.login-text-ctn{
+    margin-top: 0;
+}
+
+.login-text-ctn a{
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.login-text-ctn .login-text{
+    margin-top: 32.5px;
+}
+
+
+.login-ctn form{
+    display: grid;
+    grid-template-columns: 1fr;
+} 
+
+.input-wrapper{
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+}
+
+.input-field span{
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 11px;
+}
+
+
+/*file upload button*/
+.file-btn-ctn{
+    position: relative;
+}
+
+.file-btn-ctn input[type="file"]{
+    display: none;
+}
+
+.file-btn-ctn .custom-upload-btn{
+    border: 1px solid #000;
+    width: 352px;
+    display: block;
+    height: 37px;
+    text-align: center;
+    /* top: 50%; */
+    margin-top: 8px;
+}
+
+.file-btn-ctn .custom-upload-btn:hover{
+    cursor: pointer;
+    background: #000;
+    color: #fff;
+}
+
+.custom-upload-btn span{
+    display: block;
+    margin-top:10px
+}
+
+.login-btn{
+    margin-top: 42px;
+    margin-bottom: 64px;
+}
+
+.error{
+    display:block;
+    color: #ff0000;
+}
+
+.uploaded{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+button.delBtn{
+    background: none;
+    outline: none;
+    border: 1px solid #000;
+    font-family: 'Josefin Sans', sans-serif;
+    width: 55px;
+}
+
+button.delBtn:hover{
+    background: #000 !important;
+    color: #fff
+}
+
+
+@media(max-width: 768px){
+    .login-text-ctn{
+        padding: 20px;
+    }
+
+    .input-wrapper{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}

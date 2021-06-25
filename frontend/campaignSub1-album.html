@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+    <head>
+        <title>Artist Information</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300&display=swap" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/common.css">
+        <link rel="stylesheet" href="css/header.css">
+        <link rel="stylesheet" href="css/footer.css">
+        <link rel="stylesheet" href="css/campaignSub-1.css">
+        <link rel="stylesheet" href="css/sideMenu.css">
+
+    </head>
+    <body>
+        <div class="header isDesktop">
+            <div class="menu-ctn">
+                <!-- <img src="img/menubar.svg" class="menu-logo" id="sideBar" > -->
+                <div class="toggle">
+                    <div class="child"></div>
+                    <div class="child"></div>
+                    <div class="child"></div>
+                </div>
+                <div class='sidenav' id="mySidenav">
+                    <a href="javascript:void(0)" class="closebtn" >&times;</a>
+                   <div style="padding:170px 0 0 110px">
+                        <div class="menu-login"><a href="login.html">登入</a><span>/</span><a href="register.html">註冊</a></div>
+                        <a href="campaignSubmission.html">遞交作品</a>
+                        <a href="#">投票</a>
+                   </div>
+                </div>
+            </div>    
+            <div class="logo">
+                <a href="index.html"><p>LOGO</p></a>
+            </div>
+            <div class="member-ctn">
+                <div class="text-ctn">
+                    <div class="register-login">
+                        <a href="#" class="register" style="margin-right:20px"><img src="img/Facebook_white.svg"></a><a href="#" class="login"><img src="img/ig_white.svg"></a>
+                    </div>
+                </div>
+                <div class="submit">
+                    <a href="login.html" style="color:#fff">登入</a><span>/</span><a href="register.html" style="color:#fff">註冊</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile header -->
+        <div class="header isMobile" style="display: none;">
+            <div class="logo">
+                <a href="index.html"><p>LOGO</p></a>
+            </div>
+            
+            <div class="menu-ctn">
+                <!-- <img src="img/menubar.svg" class="menu-logo" id="openSideBar" > -->
+
+                <div class="toggle">
+                    <div class="child"></div>
+                    <div class="child"></div>
+                    <div class="child"></div>
+                </div>
+
+                <!-- <a href="javascript:void(0)" class="closebtn" id="closeSideBar" onclick="closeNav()">&times;</a> -->
+                <div class='sidenav' id="mobileSidenav">
+                    <!-- <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a> -->
+                    <div class="menu-login"><a href="login.html">登入</a><span>/</span><a href="register.html">註冊</a></div>
+                    <a href="campaignSubmission.html">遞交作品</a>
+                    <a href="#">投票</a>
+                </div>
+            </div>    
+        </div>
+        
+        <div class="slide-text">
+            <marquee><span>2021年度季選現正接受投票 截止日期8月8日</span><span>2021年度季選現正接受投票 截止日期8月8日</span><span>2021年度季選現正接受投票 截止日期8月8日</span><span>2021年度季選現正接受投票 截止日期8月8日</span><span>2021年度季選現正接受投票 截止日期8月8日</span><span>2021年度季選現正接受投票 截止日期8月8日</span><span>2021年度季選現正接受投票 截止日期8月8日</span><span>2021年度季選現正接受投票 截止日期8月8日</span><span>2021年度季選現正接受投票 截止日期8月8日</span><span>2021年度季選現正接受投票 截止日期8月8日</span><span>2021年度季選現正接受投票 截止日期8月8日</span><span>2021年度季選現正接受投票 截止日期8月8日</span><span>2021年度季選現正接受投票 截止日期8月8日</span><span>2021年度季選現正接受投票 截止日期8月8日</span></marquee>
+        </div>
+
+        <div class="content-container">
+            <div class="login-ctn">
+                <div class="login-text-ctn">
+                    <a href="campaignSubmission.html" style="font-size:20px">Back</a>
+                    <div class="login-text">
+                        <p>Artist Information</p>
+                        <p>Step 1 of 2</p>
+                    </div>
+                </div>
+                
+                <div class="inputForm inputAlbumForm">
+                    <div class="input-wrapper">
+                        <div class="input-field">
+                            <label for="artistName">Artist Name<span class="star">*</span></label><br>
+                            <input type="text" class="input-field required-field artistName" id="artistName" >
+                            <span class="error"></span>
+                        </div> 
+                        <div class="input-field">
+                            <label for="artist-origin">Artist Origin*</label><br>
+                            <select class="form-select required-field artist-origin" aria-label="Default select example" id="artist-origin">
+                                <option value="">Please Select</option>
+                                <option value="Hong Kong">Hong Kong</option>
+                                <option value="Taiwan">Taiwan</option>
+                                <option value="Hong Kong">Hong Kong</option>
+                                <option value="Hong Kong">Hong Kong</option>
+                            </select>
+                            <span class="error"></span>
+                        </div>
+                    </div>
+
+                    <div class="input-wrapper">
+                        <div class="input-field">
+                            <label for="musicLabel">Music Label*</label><br>
+                            <input type="text" class="input-field required-field musicLabel" id="musicLabel">
+                            <span>Fill 'N/A' if artist does not have a label</span>
+                            <span class="error"></span>
+                        </div>
+                        <div class="input-field">
+                            <label for="cashMember">Artist is CASH member?*</label><br>
+                            <select class="form-select required-field cashMember" aria-label="Default select example" id="cashMember">
+                                <option value="">Please Select</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                            <span class="error"></span>
+                        </div>
+                    </div>
+
+                    <div class="input-wrapper">
+                        <div class="input-field">
+                            <label for="contactPerson">Contact Person*</label><br>
+                            <input type="text" class="input-field required-field contactPerson" id="contactPerson">
+                            <span class="error"></span>
+                        </div>
+                        <div class="input-field">
+                            <label for="roleContactPerson">Role of Contact Person?*</label><br>
+                            <input type="text" class="input-field required-field roleContactPerson" id="roleContactPerson">
+                            <span class="error"></span>
+                        </div>
+                    </div>
+
+                    <div class="input-wrapper">
+                        <div class="input-field">
+                            <label for="contactEmail">Contact Email*</label><br>
+                            <input type="text" class="input-field required-field contactEmail" id="contactEmail">
+                            <span class="error"></span>
+                        </div>
+                        <div class="input-field">
+                            <label for="contactNumber">Contact Number*</label><br>
+                            <input type="text" class="input-field required-field contactNumber" id="contactNumber">
+                            <span class="error"></span>
+                        </div>
+                    </div>
+
+                    <div class="input-wrapper">
+                        <div class="input-field">
+                            <label for="facebook">FaceBook Page</label><br>
+                            <input type="url" class="input-field facebook" id="facebook" value="https://www.facebook.com/" placeholder="https://www.facebook.com/">
+                        </div>
+                        <div class="input-field">
+                            <label for="instagram">instagram</label><br>
+                            <input type="url" class="input-field facebook" id="instagram" value="https://www.instagram.com/" placeholder="https://www.instagram.com/">
+                        </div>
+                    </div>
+
+                    <div class="input-wrapper">
+                        <div class="input-field">
+                            <label forid="youtube" >Youtube Channel</label><br>
+                            <input type="url" class="input-field youtube" id="youtube" value="https://www.youtube.com/user/" placeholder="https://www.youtube.com/user/">
+                        </div>
+                        <div class="input-field">
+                            <label for="website">Website</label><br>
+                            <input type="url" class="input-field website" id="website">
+                        </div>
+                    </div>
+                    <div class="input-wrapper">
+                        <div class="input-field">
+                            <p style="font-family: 'Josefin Sans', sans-serif; letter-spacing: 4px;">Upload Artist Photo*</p>
+                           <div class="file-btn-ctn">
+                                <label for="file-input" class="custom-upload-btn"><span>UPLOAD<img src="img/001-upload-button.svg"></span></label>
+                                <input type="file" id="file-input" class="file-input imageUpload" accept="image/*">
+                                <span class="file-remark">Maximum file size: 2MB (jpg/jpeg/png only)</span>
+                                <div class="uploaded"></div>
+                                <span class="error"></span>
+                           </div>
+                        </div>
+                    </div>
+                    <div class="login-btn">
+                        <button type="submit" id="nextBtn" class="loginBtn" onclick="loadToAlbum()">Next</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="float-btn-ctn">
+            <button style="display: none">^</button>
+        </div>
+
+        <footer style="border:1px solid #000">
+            <div class="footer-ctn">
+                <div class="bottom footer-logo">
+                    <p>Address here</p>
+                    <p>2020 © All rights reserved</p>
+                </div>
+                <div class="bottom subscribe-form">
+                    <div class="subscribeForm" id="subscribe">
+                        <p>Subscribe to our newsletter</p>
+                        <input type="text" placeholder="Name" class="footer-field" id="sub-name"><br>
+                        <input type="email" placeholder="Email" class="footer-field" id="sub-email"><br>
+                        <button class="subscriBtn" type="submit" id="footerSub">Subscribe</button>
+                    </div>
+                </div>
+                <div class="bottom footer-link">
+                    <ul>
+                        <li><a href="#">關於我們</a></li>
+                        <li><a href="#">聯絡我們</a></li>
+                        <li><a href="#">條款及細則</a></li>
+                        <li><a href="#">私隱政策</a></li>
+                    </ul>
+                </div>
+                <div class="bottom social-link">
+                    <ul>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">Facebook</a></li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+        <script src="js/global.js"></script>
+        <script src="js/sideMenu.js"></script>
+        <script src="js/urlCheck.js"></script>
+        <script src="js/campaignSub-1.js"></script>
+    </body>
+</html>

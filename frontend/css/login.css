@@ -1,0 +1,163 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300&display=swap');
+
+
+/* @font-face{
+    font-family: "Helvetica Neue";
+    src: url("/fonts/HelveticaNeue-Regular.ttf");
+} */
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Helvetica Neue';
+}
+
+.content-container{
+    position: relative;
+    min-height: 86vh;
+}
+
+.login-ctn{
+    max-width: 800px;
+    margin:0 auto;
+    
+}
+
+/* .login-text-ctn{
+    border-bottom: 1px solid #000;
+    padding:40px 0;
+    margin-top: 40px;
+} */
+
+.login-text{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.login-text p, 
+.login-text a, 
+.input-field label,
+.forget-pwd a,
+.login-btn button{
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.login-text p, 
+.login-text a, 
+.input-field label,
+.login-btn button{
+    letter-spacing: 4px;
+}
+
+.login-text a{
+    text-decoration: none;
+    color: #A5A5A5;
+}
+
+.login-text a:hover{
+    text-decoration: underline;
+}
+
+.input-field-ctn{
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+}
+
+.input-field{
+    /* width: 50%; */
+    margin-top:40px;
+}
+
+.input-field input{
+    width:352px;
+    height:37px;
+    margin-top: 8px;
+}
+
+.input-field .warn-message{
+    margin-left:20px;
+    color: #FF4D00;
+}
+
+.right-field{
+    padding-left:88px;
+}
+
+
+.field-logo{
+    position: relative;
+}
+
+.field-logo img{
+    position: absolute;
+    top:25px;
+    right:10px;
+}
+
+.field-logo img:hover{
+    cursor: pointer;
+}
+
+.forget-pwd{
+    text-align: right;
+}
+
+.forget-pwd a{
+    font-size: 11px;
+    color: #000;
+}
+
+.login-btn{
+    text-align: center;
+    margin-top: 114px;
+}
+
+.login-btn button{
+    color: #fff;
+    background: #000;
+    border: none;
+    width: 268px;
+    height:49px;
+}
+
+.login-btn button:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+@media(max-width:796px){
+    .member-ctn .submit{
+        padding: 12px 30px;
+    }
+
+    .input-field-ctn{
+        flex-wrap: wrap;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .input-field{
+        width: auto
+    }
+
+    .right-field{
+        padding-left: 0;
+    }
+}
+
+@media(max-width: 375px){
+    .input-field{
+        width: 90%;
+    }
+
+    .input-field input{
+        width: 100% !important
+    }
+
+    .login-text a{
+        text-align: right;
+    }
+}
