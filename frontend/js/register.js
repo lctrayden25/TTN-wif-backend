@@ -117,6 +117,8 @@ $('#registerBtn').click(function(){
              'password': confirm_password
         }
 
+        isLoading = true;
+
         postXHR(
             'user_register', 
             JSON.stringify(
@@ -128,7 +130,7 @@ $('#registerBtn').click(function(){
 
                 console.log(data)
                 register_form = data;
-
+                isLoading = false;
             },
             function(result, data){ 
                 console.log(result);
@@ -146,13 +148,15 @@ $('#registerBtn').click(function(){
                 // redirectToHome();
             }
         );
-
     }
 })
 
 
 window.addEventListener('beforeunload',function(e){
-    e.preventDefault();
-    e.returnValue = '';
+    if(isLoading){
+        e.preventDefault();
+        e.returnValue = '';
+    }
+
 });
 
