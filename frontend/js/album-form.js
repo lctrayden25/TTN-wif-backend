@@ -170,8 +170,23 @@ $('.albumSub').click(function(){
         }
         console.log(arrayOfInputObject)
 
+        
+        var album_streaming_link;
+        if($('#streamLink').val() == "Apple Music"){
+            album_streaming_link = appleMusic
+        }else{
+            album_streaming_link = spotifyMusic;
+        }
+
         var album_form_obj = {
-            
+            'artist_id': '',
+            'album_name': album_name,
+            'release_date': release_date,
+            'genre': album_genre,
+            'album_publisher': album_publisher,
+            'album_exceutive_producer': album_exProducer,
+            'album_cover_img_url': cover_upload,
+            'album_streaming_link': album_streaming_link,            
         }
     }
 });

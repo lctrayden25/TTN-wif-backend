@@ -178,7 +178,7 @@ $('.trackSub').click(function(){
             'mastering_engineer': master_engineer,
             'lsrc': lsrc,
             'track_streaming_link': track_streamLink,
-            'album_streaminh_link': apple_selected,
+            'album_streaming_link': apple_selected,
             // 'spotify_selected': spotify_selected,
             'souce_file_name': song_upload
         }
