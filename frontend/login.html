@@ -88,14 +88,16 @@
                     <div class="field-ctn">
                         <div class="input-field-ctn">
                             <div class="input-field left-field">
-                                <label>EMAIL</label><span class="warn-message" id="email-warn"></span><br>
-                                <input type="text" id="email">
+                                <label>EMAIL</label><br>
+                                <input type="text" id="email" class="required">
+                                <span class="error"></span>
                             </div>
                             <div class="input-field right-field">
-                                <label>PASSWORD</label><span class="warn-message" id="pwd-warn"></span><br>
+                                <label>PASSWORD</label><br>
                                 <div class="field-logo">
-                                    <input type="password" id="password">
-                                    <img src="img/001-visibility.svg" id="visible-logo">
+                                    <input type="password" id="password" class="required">
+                                    <img src="img/001-visibility.svg" id="visible-logo">  
+                                    <span class="error"></span>
                                 </div>
                                 <div class="forget-pwd">
                                     <a href="#">Forget password?</a>
@@ -105,7 +107,7 @@
                     </div>
         
                     <div class="login-btn">
-                        <button type="submit" id="loginBtn" class="loginBtn">LOGIN</button>
+                        <button id="loginBtn" class="loginBtn">LOGIN</button>
                     </div>
                 </form>
             </div>

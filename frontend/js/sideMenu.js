@@ -1,13 +1,3 @@
-// function openNav() {
-//   document.getElementById("mySidenav").style.width = "550px"; 
-//   document.getElementById("mobileSidenav").style.width = "550px";
-// }
-
-// function closeNav() {
-//   document.getElementById("mySidenav").style.width = "0";
-//   document.getElementById("mobileSidenav").style.width = "0";
-// }
-
 $(document).ready(function(){
     $('.menu-ctn').click(function(){
         if(!($('.sidenav').hasClass('active'))){

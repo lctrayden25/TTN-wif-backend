@@ -9,9 +9,14 @@
 *{
     margin: 0;
     padding: 0;
-    font-family: 'Helvetica Neue';
+    font-family: 'Josefin Sans','Helvetica Neue';
 }
 
+.error{
+    display:block;
+    color: #ff0000;
+    font-size: 11px;
+}
 
 .content-container{
     position: relative;
@@ -69,6 +74,7 @@
     width:352px;
     height:37px;
     margin-top: 8px;
+    margin-bottom: 5px;
 }
 
 .input-field .warn-message{

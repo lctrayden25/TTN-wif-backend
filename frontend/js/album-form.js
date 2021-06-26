@@ -93,9 +93,10 @@ $('#addMoreAlbum').click(function(){
 
 $('.albumSub').click(function(){
     if(!isLoading){
+        
         var required = $('.required-field').val();
         if(required == ""){
-            $('.required-field').css('border','1px solid #ff0000');
+            $('.required-field').css('border','1px solid #ff4d00');
             $('.error').html("Please enter valid information");
             return false;
         }

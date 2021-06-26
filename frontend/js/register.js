@@ -5,95 +5,117 @@ var showPwd2 = document.getElementById("confirm-visible-logo");
 var confirmPassword = document.getElementById("confirmPassword");
 var registerBtn = document.getElementById("registerBtn");
 
-var emailWarn = document.getElementById("email-warn");
-var pwdWarn = document.getElementById("pwd-warn");
-var confirmpwdWarn = document.getElementById("confirmpwd-warn");
 
+$('.visible-logo').click(function(){
+    var password_type = $('.visible-check').attr('type');
 
-
-function showPassowrd(){
-    if(password.type === "password"){
-        password.type = "text";
+    if(password_type == "password"){
+        $('.visible-check').parent().find('.visible-check').attr('type','text');
     }else{
-        password.type = "password";
+        $('.visible-check').parent().find('.visible-check').attr('type','password');
     }
-}
-function showConfirmPwd(){
-    if(confirmPassword.type === "password"){
-        confirmPassword.type = "text";
+})
+
+
+$('.required').blur(function(){
+    if($(this).val() == ""){
+        $(this).css('border','1px solid #ff4d00');
+        $(this).parent().find('.error').html('Please enter valid information.')
     }else{
-        confirmPassword.type = "password";
+        $(this).css('border','1px solid #000');
+        $(this).parent().find('span').empty();
     }
-}
-showPwd.addEventListener('click',showPassowrd,false);
-showPwd2.addEventListener('click',showConfirmPwd,false);
+})
 
-
-function registerEmailCheck(){
+$('#email').blur(function(){
     const mailformat = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    if(email.value == "" || !(email.value.match(mailformat))){
-        email.style.border = "1px solid red";
-        emailWarn.textContent = "Invalid email";
+    if($('#email').val() == "" || !($('#email').val().match(mailformat))){
+        $('#email').css('border','1px solid #ff4d00');
+        $(this).parent().find('.error').html("Please enter valid email.");
         return false;
     }else{
-        email.style.border = "1px solid black"
-        emailWarn.textContent = "";
+        $('#email').css('border','1px solid #000');
+        $(this).parent().find('.error').empty();
     }
-}
-email.addEventListener("blur", registerEmailCheck,false);
+})
 
-function registerPasswordCheck(){
-    // var pwdformat = /^([a-zA-Z0-9!@#$%^&*])$/;
-    if(password.value.length < 8){
-        password.style.border = "1px solid red";
-        pwdWarn.textContent = "Weak password";
-        return false;
+$('#password').blur(function(){
+    if($(this).val().length < 8){
+        $(this).css('border','1px solid #ff4d00');
+        $(this).parent().find('.error').html('This is a weak password.')
     }else{
-        password.style.border = "1px solid black";
-        pwdWarn.textContent = ""
+        $(this).css('border','1px solid #000');
+        $(this).parent().find('.error').empty();
     }
-}
-password.addEventListener("blur", registerPasswordCheck, false);
+})
 
 
-function comparePassword(){
-    if(password.value != confirmPassword.value){
-        password.style.border = "1px solid red";
-        confirmpwdWarn.textContent = "Two different password";
+$('#confirmPassword').blur(function(){
+    var password = $('#password').val();
+    var confirm_password = $(this).val();
+
+    if(confirm_password !== password){
+        $(this).css('border','1px solid #ff4d00');
+        $(this).parent().find('.error').html('Please ensure enter the same password.')
     }else{
-        password.style.border = "1px solid black";
-        pwdWarn.textContent = ""
+        $(this).css('border','1px solid #000');
+        $(this).parent().find('.error').empty();
     }
-}
-confirmPassword.addEventListener("blur", comparePassword, false);
+})
 
-function registerChecking(){
+
+$('#registerBtn').click(function(){
     if(!isLoading){
-        registerEmailCheck();
-        registerPasswordCheck();
+
+        if($('.required').val() == ""){
+            $('.required').css('border','1px solid #ff4d00');
+            $('.error').html('Please enter valid information.');
+            return false;
+        }
+
+        const mailformat = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        if($('#email').val() == "" || !($('#email').val().match(mailformat))){
+            $('#email').css('border','1px solid #ff4d00');
+            $('#email').parent().find('.error').html("Please enter valid email.");
+            return false;
+        }
+
+
+        if($('#password').val().length < 8){
+            $('#password').css('border','1px solid #ff4d00');
+            $('#password').parent().find('.error').html('password is a weak password.');
+            return false;
+        }else{
+            $('#password').css('border','1px solid #000');
+            $('#password').parent().find('.error').empty();
+        }
+
+
+        if((($('#confirmPassword').val()) !== $('#password').val())){
+            $('#confirmPassword').css('border','1px solid #ff4d00');
+            $('#confirmPassword').parent().find('.error').html('Please ensure enter the same password.');
+            return false;
+        }else{
+            $('#confirmPassword').css('border','1px solid #000');
+            $('#confirmPassword').parent().find('.error').empty();
+        }
 
         var arrayOfFormObject = [];
         var arrayOfInputObject = [];
         var email = document.querySelector('#email').value;
         var password = document.querySelector('#password').value;
-        var confirm_passowrd = document.querySelector('#confirmPassword').value;
+        var confirm_password = document.querySelector('#confirmPassword').value;
         arrayOfInputObject.push({
             email: email,
             password: password ,
-            confirm_passowrd: confirm_passowrd
+            confirm_password: confirm_password
         });
         arrayOfFormObject.push(arrayOfInputObject);
 
         console.log(arrayOfFormObject)
-
-        // var form_obj = {
-        //     'email': email,
-        //     'password': password,
-        // }
-
     }
-}
-registerBtn.addEventListener('click', registerChecking,false);
+})
+
 
 window.addEventListener('beforeunload',function(e){
     e.preventDefault();

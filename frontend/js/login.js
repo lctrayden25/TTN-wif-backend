@@ -2,66 +2,41 @@ var email = document.getElementById("email");
 var showPwd = document.getElementById("visible-logo");
 var password = document.getElementById("password");
 var loginBtn = document.getElementById("loginBtn");
-var emailWarn = document.getElementById("email-warn");
-var pwdWarn = document.getElementById("pwd-warn");
 
 // show password
-function showPassowrd(){
+function showPassword(){
     if(password.type === "password"){
         password.type = "text";
     }else{
         password.type = "password";
     }
 }
-showPwd.addEventListener('click',showPassowrd,false);
+showPwd.addEventListener('click',showPassword,false);
 
 
-function loginChecking(event){
-
-    event.preventDefault();
-
-    if(email.value == ""){
-        email.style.border = "1px solid #FF4D00";
-        emailWarn.innerHTML = "Please enter your email.";
+$('#loginBtn').click(function(){
+    if($('.required').val() == ""){
+        $('.required').parent().find('input').css('border','1px solid #ff0000');
+        $('.required').parent().find('span').html('Please enter valid information.')
     }else{
-        email.style.border = "1px solid black"
-        emailWarn.innerHTML = "";
-    }
-
-    if(password.value == ""){
-        password.style.border = "1px solid #FF4D00";
-        pwdWarn.innerHTML = "Please enter your password.";
-    }else{
-        password.style.border = "1px solid black";
-    }
-
-    const mailformat = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    if(email.value.match(mailformat)){
-        // alert("correct email format");
-        return true;
-    }else{
-        // alert("wrong email format");
-        emailWarn.innerHTML = "Invalid email";
+        $('.required').parent().find('input').css('border','1px solid #000');
+        $('.required').parent().find('span').empty();
     }
 
 
-        var arrayOfFormObject = [];
-        var listOfForm = document.querySelectorAll('.loginForm');
-        [].forEach.call(listOfForm, function(form) {
-        var arrayOfInputObject = [];
-        var inputValue1 = form.querySelector('#email').value;
-        var inputValue2 = form.querySelector('#password').value;
-        arrayOfInputObject.push({
-            value1: inputValue1,
-            value2: inputValue2
-        });
-        arrayOfFormObject.push(arrayOfInputObject);
-        });
-
-}
-loginBtn.addEventListener('click', loginChecking, false);
-
-
+    var arrayOfFormObject = [];
+    var listOfForm = document.querySelectorAll('.loginForm');
+    [].forEach.call(listOfForm, function(form) {
+    var arrayOfInputObject = [];
+    var inputValue1 = form.querySelector('#email').value;
+    var inputValue2 = form.querySelector('#password').value;
+    arrayOfInputObject.push({
+        value1: inputValue1,
+        value2: inputValue2
+    });
+    arrayOfFormObject.push(arrayOfInputObject);
+    });
+})
 
 
 
