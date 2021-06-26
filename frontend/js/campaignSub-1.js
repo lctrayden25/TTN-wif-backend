@@ -237,7 +237,7 @@ function albumFormOneCheck(event){
         console.log(arrayOfAlbumFormObject)
 
         var artist_form_obj = {
-            'user_id': '',
+            // 'user_id': '',
             'artist_name': artist_name,
             'artist_orgin': artist_orgin,
             'artist_label': music_label,

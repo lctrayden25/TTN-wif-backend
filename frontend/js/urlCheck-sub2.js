@@ -1,5 +1,4 @@
 var x = $('.appleSelected').length;
-console.log(x)
 
 var apple = document.querySelectorAll('input[type="url"].appleSelected');
 for(let i=0; i<apple.length; i++){

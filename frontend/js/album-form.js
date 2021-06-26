@@ -105,23 +105,23 @@ $('.albumSub').click(function(){
         var lengthOfForm = $('.albumForm .inner-form-wrapper').length;
         var arrayOfInputObject = [];
 
-        var album_name = document.querySelector('.albumName').value;
-        var release_date = document.querySelector('.releaseDate').value;
-        var album_genre = document.querySelector('.albumGenre').value;
-        var album_publisher = document.querySelector('.albumPublisher').value;
-        var stream_link = document.querySelector('.streamLink').value;
-        var apple_selected = document.querySelector('.appleSelected').value;
-        var spotify_selected = document.querySelector('.spotifySelected').value;
-        var album_exProducer = document.querySelector('.albumExProducer').value;
-        var cover_upload = document.querySelector('.coverUpload').value;
+        var album_name = document.querySelector('#albumName').value;
+        var release_date = document.querySelector('#releaseDate').value;
+        var album_genre = document.querySelector('#albumGenre').value;
+        var album_publisher = document.querySelector('#albumPublisher').value;
+        var stream_link = document.querySelector('#streamLink').value;
+        var appleMusic = document.querySelector('#appleMusic').value;
+        var spotifyMusic = document.querySelector('#spotifyMusic').value;
+        var album_exProducer = document.querySelector('#albumExProducer').value;
+        var cover_upload = document.querySelector('#coverUpload').value;
         arrayOfInputObject.push({
             album_name: album_name,
             release_date: release_date,
             album_genre: album_genre,
             album_publisher: album_publisher,
             stream_link: stream_link,
-            apple_selected: apple_selected,
-            spotify_selected: spotify_selected,
+            appleMusic: appleMusic,
+            spotifyMusic: spotifyMusic,
             album_exProducer: album_exProducer,
             cover_upload: cover_upload
         });
@@ -143,6 +143,8 @@ $('.albumSub').click(function(){
             var mix_engineer = document.querySelector('#mixEngineer'+i).value;
             var master_engineer = document.querySelector('#masterEngineer'+i).value;
             var lsrc = document.querySelector('#lsrc'+i).value;
+            var appleSelected = document.querySelector('#appleSelected'+i).value;
+            var spotifySelected = document.querySelector('#spotifySelected'+i).value;
             var song_upload = document.querySelector('#file-input'+i).value;
 
             arrayOfInputObject.push({
@@ -161,10 +163,16 @@ $('.albumSub').click(function(){
                 mix_engineer: mix_engineer,
                 master_engineer: master_engineer,
                 lsrc: lsrc,
+                appleSelected: appleSelected,
+                spotifySelected: spotifySelected,
                 song_upload: song_upload
             })
         }
         console.log(arrayOfInputObject)
+
+        var album_form_obj = {
+            
+        }
     }
 });
 

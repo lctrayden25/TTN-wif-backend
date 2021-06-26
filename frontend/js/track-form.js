@@ -149,11 +149,72 @@ $('.trackSub').click(function(){
                 song_upload: song_upload,
                 track_streamLink: track_streamLink,
                 apple_selected: apple_selected,
-                spotify_selected: spotify_selected
+                // spotify_selected: spotify_selected
             })
         }
 
         console.log(arrayOfInputObject)
+
+        var track_form_obj = {
+            'artist_id': '',
+            'track_name': track_name,
+            'release_date': release_date,
+            'track_duration': track_duration,
+            'genre': track_genre,
+            'contact_person': contact_person,
+            'role_of_contact_person': person_role,
+            'track_publisher': track_publisher,
+            'featuring_artist': feature_artist,
+            'composer': composer,
+            'composer_op': composer_op,
+            'composer_sp': composer_sp,
+            'lyricist': lyricist,
+            'lyricist_op': lyricist_op,
+            'lyricist_sp': lyricist_sp,
+            'arranger': arranger,
+            'producer': producer,
+            'recording_engineer': record_engineer,
+            'mixing_engineer': mix_engineer,
+            'mastering_engineer': master_engineer,
+            'lsrc': lsrc,
+            'track_streaming_link': track_streamLink,
+            'album_streaminh_link': apple_selected,
+            // 'spotify_selected': spotify_selected,
+            'souce_file_name': song_upload
+        }
+
+        console.log(track_form_obj)
+
+        postXHR(
+            'new_track', 
+            JSON.stringify(
+                track_form_obj
+            ),
+            function(result, data){ // success request
+                console.log(result);
+                // displayNews(data);
+
+                console.log(data)
+                track_form = data;
+                isLoading = false;
+
+            },
+            function(result, data){ 
+                console.log(result);
+                // failed request
+                // redirectToHome();
+            },
+            function(){ 
+                // connection error
+                console.log(result);
+                // redirectToHome();
+            },
+            function(status){ 
+                // request status error
+                console.log(result);
+                // redirectToHome();
+            }
+        );
    }
 })
 

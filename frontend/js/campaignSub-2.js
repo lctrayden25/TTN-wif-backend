@@ -26,7 +26,7 @@ function socialCheck(){
 
 window.onload = function(){
     document.getElementById("submitBtn").disabled = true;
-    submitBtn.style.background = "grey"
+    submitBtn.style.background = "grey";
 }
 function termCheck(checkbox){
     var submitBtn = document.getElementById("submitBtn");
