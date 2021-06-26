@@ -26,41 +26,41 @@ function getBase64(file, name) {
         file64 = reader.result;
         file64_type = name.split('.').pop();
 
-        var artistImgageObj = {
+        var artistImageObj = {
             file_name: null,
             file_type: file64_type,
             base64: file64
         }
 
-        postXHR(
-            'upload_file', 
-            JSON.stringify(
-                artistImgageObj
-            ),
-            function(result, data){ // success request
-                console.log(result);
-                // displayNews(data);
+        // postXHR(
+        //     'upload_file', 
+        //     JSON.stringify(
+        //         artistImageObj
+        //     ),
+        //     function(result, data){ // success request
+        //         console.log(result);
+        //         // displayNews(data);
 
-                console.log(data)
-                file_upload = data;
+        //         console.log(data)
+        //         file_upload = data;
 
-            },
-            function(result, data){ 
-                console.log(result);
-                // failed request
-                // redirectToHome();
-            },
-            function(){ 
-                // connection error
-                console.log(result);
-                // redirectToHome();
-            },
-            function(status){ 
-                // request status error
-                console.log(result);
-                // redirectToHome();
-            }
-        );
+        //     },
+        //     function(result, data){ 
+        //         console.log(result);
+        //         // failed request
+        //         // redirectToHome();
+        //     },
+        //     function(){ 
+        //         // connection error
+        //         console.log(result);
+        //         // redirectToHome();
+        //     },
+        //     function(status){ 
+        //         // request status error
+        //         console.log(result);
+        //         // redirectToHome();
+        //     }
+        // );
 	}
 	reader.onerror = function (error) {
 		console.log('Upload Error: ', error);
@@ -89,7 +89,7 @@ $('#file-input').change(function(event){
         $('.delBtn').click(function(){
             $('.uploaded').find('span, button').remove();
         })
-        getBase64(file, fileName);
+        getBase64(file, filename);
     }
     // $('.uploaded').html("<span style='font-size:16px'>"+filename+"</span><button class='delBtn'>Delete</button>");
     
@@ -106,7 +106,7 @@ $('.required-field').blur(function(){
         $(this).css('border','1px solid #000')
     }
 });
-
+ 
 
 // $('#nextBtn').click(function(){
 //     if(($('.youtube').val() == "https://www.youtube.com/user/") || ($('.youtube').val() == "")){
@@ -173,21 +173,21 @@ $('#contactNumber').blur(function(){
 })
 
 //Click next button to another page
-function loadToAlbum(){
-    if(artistName.value=="" || musicLabel.value =="" || contactEmail.value=="" || contactNumber.value==""){
-        return false;
-    }else{
-        location.href='campaignSub2-album.html';    
-    }
-}
+// function loadToAlbum(){
+//     if(artistName.value=="" || musicLabel.value =="" || contactEmail.value=="" || contactNumber.value==""){
+//         return false;
+//     }else{
+//         location.href='campaignSub2-album.html';    
+//     }
+// }
 
-function loadToTrack(){
-    if(artistName.value=="" || musicLabel.value =="" || contactEmail.value=="" || contactNumber.value==""){
-        return false;
-    }else{
-        location.href='campaignSub2-track.html';    
-    }
-}
+// function loadToTrack(){
+//     if(artistName.value=="" || musicLabel.value =="" || contactEmail.value=="" || contactNumber.value==""){
+//         return false;
+//     }else{
+//         location.href='campaignSub2-track.html';    
+//     }
+// }
 
 
 
@@ -203,45 +203,92 @@ function albumFormOneCheck(event){
         }
     
         var arrayOfAlbumFormObject = [];
-        var listOfAlbumForm = document.querySelectorAll('.inputForm');
-        [].forEach.call(listOfAlbumForm, function(form) {
-            var arrayOfAlbumInputObject = [];
-            var artist_name = form.querySelector('#artistName').value;
-            var artist_orgin = form.querySelector('#artist-origin').value;
-            var music_label = form.querySelector('#musicLabel').value;
-            var cash_member = form.querySelector('#cashMember').value;
-            var contact_person = form.querySelector('#contactPerson').value;
-            var role_contact_person = form.querySelector('#roleContactPerson').value;
-            var contact_email = form.querySelector('#contactEmail').value;
-            var contact_number = form.querySelector('#contactNumber').value;
-            var facebook = form.querySelector('#facebook').value;
-            var instagram = form.querySelector('#instagram').value;
-            var youtube = form.querySelector('#youtube').value;
-            var website = form.querySelector('#website').value;
-            var file_input = form.querySelector('#file-input').value;
-            arrayOfAlbumInputObject.push({
-                artist_name: artist_name,
-                artist_orgin: artist_orgin,
-                music_label: music_label,
-                cash_member: cash_member,
-                contact_person: contact_person,
-                role_contact_person: role_contact_person,
-                contact_email: contact_email,
-                contact_number: contact_number,
-                facebook: facebook,
-                instagram: instagram,
-                youtube: youtube,
-                website: website,
-                file_input: file_input
-            });
-            arrayOfAlbumFormObject.push(arrayOfAlbumInputObject);
-        }); 
+        var arrayOfAlbumInputObject = [];
+        var artist_name = document.querySelector('#artistName').value;
+        var artist_orgin = document.querySelector('#artist-origin').value;
+        var music_label = document.querySelector('#musicLabel').value;
+        var cash_member = document.querySelector('#cashMember').value;
+        var contact_person = document.querySelector('#contactPerson').value;
+        var role_contact_person = document.querySelector('#roleContactPerson').value;
+        var contact_email = document.querySelector('#contactEmail').value;
+        var contact_number = document.querySelector('#contactNumber').value;
+        var facebook = document.querySelector('#facebook').value;
+        var instagram = document.querySelector('#instagram').value;
+        var youtube = document.querySelector('#youtube').value;
+        var website = document.querySelector('#website').value;
+        var file_input = document.querySelector('#file-input').value;
+        arrayOfAlbumInputObject.push({
+            artist_name: artist_name,
+            artist_orgin: artist_orgin,
+            music_label: music_label,
+            cash_member: cash_member,
+            contact_person: contact_person,
+            role_contact_person: role_contact_person,
+            contact_email: contact_email,
+            contact_number: contact_number,
+            facebook: facebook,
+            instagram: instagram,
+            youtube: youtube,
+            website: website,
+            file_input: file_input
+        });
+        arrayOfAlbumFormObject.push(arrayOfAlbumInputObject);
 
-        var sub1_form_obj = {
-            
-        }
-    
         console.log(arrayOfAlbumFormObject)
+
+        var artist_form_obj = {
+            'user_id': '',
+            'artist_name': artist_name,
+            'artist_orgin': artist_orgin,
+            'artist_label': music_label,
+            'is_cash_member': cash_member,
+            'contact_person': contact_person,
+            'role_of_contact_person': role_contact_person,
+            'contact_email': contact_email,
+            'contact_number': contact_number,
+            'artist_photo': '',
+
+            'facebook': facebook,
+            'instagram': instagram,
+            'youtube': youtube,
+            'website': website
+        }
+
+        console.log(artist_form_obj)
+
+        postXHR(
+            'new_artist', 
+            JSON.stringify(
+                artist_form_obj
+            ),
+            function(result, data){ // success request
+                console.log(result);
+                // displayNews(data);
+
+                console.log(data)
+                artist_form = data;
+                isLoading = false;
+
+            },
+            function(result, data){ 
+                console.log(result);
+                // failed request
+                // redirectToHome();
+            },
+            function(){ 
+                // connection error
+                console.log(result);
+                // redirectToHome();
+            },
+            function(status){ 
+                // request status error
+                console.log(result);
+                // redirectToHome();
+            }
+        );
+
+    
+        // console.log(arrayOfAlbumFormObject)
     }
 }
 nextBtn.addEventListener('click', albumFormOneCheck, false);

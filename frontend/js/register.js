@@ -112,7 +112,41 @@ $('#registerBtn').click(function(){
         });
         arrayOfFormObject.push(arrayOfInputObject);
 
-        console.log(arrayOfFormObject)
+        var register_form_obj = {
+             'email': email,
+             'password': confirm_password
+        }
+
+        postXHR(
+            'user_register', 
+            JSON.stringify(
+                register_form_obj
+            ),
+            function(result, data){ // success request
+                console.log(result);
+                // displayNews(data);
+
+                console.log(data)
+                register_form = data;
+
+            },
+            function(result, data){ 
+                console.log(result);
+                // failed request
+                // redirectToHome();
+            },
+            function(){ 
+                // connection error
+                console.log(result);
+                // redirectToHome();
+            },
+            function(status){ 
+                // request status error
+                console.log(result);
+                // redirectToHome();
+            }
+        );
+
     }
 })
 
