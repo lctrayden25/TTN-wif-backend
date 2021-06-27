@@ -13,5 +13,4 @@ $('.info-ctn').click(function(){
 
     $(this).children('.voting-box').addClass('selected');
     $(this).siblings().find('.voting-box').removeClass('selected')
-
 })
