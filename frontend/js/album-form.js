@@ -179,7 +179,7 @@ $('.albumSub').click(function(){
         }
 
         var album_form_obj = {
-            'artist_id': '',
+            'auth_code':"",
             'album_name': album_name,
             'release_date': release_date,
             'genre': album_genre,
@@ -188,6 +188,38 @@ $('.albumSub').click(function(){
             'album_cover_img_url': cover_upload,
             'album_streaming_link': album_streaming_link,            
         }
+
+        postXHR(
+            'new_album', 
+            JSON.stringify(
+                album_form_obj
+            ),
+            function(result, data){ // success request
+                console.log(result);
+                // displayNews(data);
+
+                console.log(data)
+                register_form = data;
+
+
+                isLoading = false;
+            },
+            function(result, data){ 
+                console.log(result);
+                // failed request
+                // redirectToHome();
+            },
+            function(){ 
+                // connection error
+                console.log(result);
+                // redirectToHome();
+            },
+            function(status){ 
+                // request status error
+                console.log(result);
+                // redirectToHome();
+            }
+        );
     }
 });
 

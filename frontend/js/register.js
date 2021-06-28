@@ -117,7 +117,7 @@ $('#registerBtn').click(function(){
              'password': confirm_password
         }
 
-        isLoading = true;
+        // isLoading = true;
 
         postXHR(
             'user_register', 
@@ -130,6 +130,15 @@ $('#registerBtn').click(function(){
 
                 console.log(data)
                 register_form = data;
+
+                register_string = JSON.stringify(register_form); 
+                sessionStorage.setItem('user_register',register_string);
+
+                register_data = sessionStorage.getItem('user_register');
+                to_loginObj = JSON.parse(register_data);
+
+                location.replace('campaignSubmission.html');
+
                 isLoading = false;
             },
             function(result, data){ 
@@ -148,8 +157,10 @@ $('#registerBtn').click(function(){
                 // redirectToHome();
             }
         );
-    }
+
+    } 
 })
+
 
 
 window.addEventListener('beforeunload',function(e){
@@ -157,6 +168,5 @@ window.addEventListener('beforeunload',function(e){
         e.preventDefault();
         e.returnValue = '';
     }
-
 });
 

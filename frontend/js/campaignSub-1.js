@@ -32,35 +32,35 @@ function getBase64(file, name) {
             base64: file64
         }
 
-        // postXHR(
-        //     'upload_file', 
-        //     JSON.stringify(
-        //         artistImageObj
-        //     ),
-        //     function(result, data){ // success request
-        //         console.log(result);
-        //         // displayNews(data);
+        postXHR(
+            'upload_file', 
+            JSON.stringify(
+                artistImageObj
+            ),
+            function(result, data){ // success request
+                console.log(result);
+                // displayNews(data);
 
-        //         console.log(data)
-        //         file_upload = data;
+                console.log(data)
+                file_upload = data;
 
-        //     },
-        //     function(result, data){ 
-        //         console.log(result);
-        //         // failed request
-        //         // redirectToHome();
-        //     },
-        //     function(){ 
-        //         // connection error
-        //         console.log(result);
-        //         // redirectToHome();
-        //     },
-        //     function(status){ 
-        //         // request status error
-        //         console.log(result);
-        //         // redirectToHome();
-        //     }
-        // );
+            },
+            function(result, data){ 
+                console.log(result);
+                // failed request
+                // redirectToHome();
+            },
+            function(){ 
+                // connection error
+                console.log(result);
+                // redirectToHome();
+            },
+            function(status){ 
+                // request status error
+                console.log(result);
+                // redirectToHome();
+            }
+        );
 	}
 	reader.onerror = function (error) {
 		console.log('Upload Error: ', error);
@@ -81,7 +81,7 @@ $('#file-input').change(function(event){
 
     var filename = event.target.value.split('\\')[event.target.value.split('\\').length - 1];
     if(filename == ""){
-        return false;
+
     }else{
         var file = this.files[0];
         $('.uploaded').html("<span style='font-size:16px'>"+filename+"</span><button class='delBtn'>Delete</button>");
@@ -205,7 +205,7 @@ function albumFormOneCheck(event){
         var arrayOfAlbumFormObject = [];
         var arrayOfAlbumInputObject = [];
         var artist_name = document.querySelector('#artistName').value;
-        var artist_orgin = document.querySelector('#artist-origin').value;
+        var artist_origin = document.querySelector('#artist-origin').value;
         var music_label = document.querySelector('#musicLabel').value;
         var cash_member = document.querySelector('#cashMember').value;
         var contact_person = document.querySelector('#contactPerson').value;
@@ -219,7 +219,7 @@ function albumFormOneCheck(event){
         var file_input = document.querySelector('#file-input').value;
         arrayOfAlbumInputObject.push({
             artist_name: artist_name,
-            artist_orgin: artist_orgin,
+            artist_origin: artist_origin,
             music_label: music_label,
             cash_member: cash_member,
             contact_person: contact_person,
@@ -235,11 +235,14 @@ function albumFormOneCheck(event){
         arrayOfAlbumFormObject.push(arrayOfAlbumInputObject);
 
         console.log(arrayOfAlbumFormObject)
+        login_data = sessionStorage.getItem('user_login');
+        to_loginObj = JSON.parse(login_data);
+        console.log(to_loginObj)
 
         var artist_form_obj = {
-            // 'user_id': '',
+            'auth_code': to_loginObj.auth_code,
             'artist_name': artist_name,
-            'artist_orgin': artist_orgin,
+            'artist_origin': artist_origin,
             'artist_label': music_label,
             'is_cash_member': cash_member,
             'contact_person': contact_person,
@@ -248,10 +251,10 @@ function albumFormOneCheck(event){
             'contact_number': contact_number,
             'artist_photo': '',
 
-            'facebook': facebook,
-            'instagram': instagram,
-            'youtube': youtube,
-            'website': website
+            'facebook_link': facebook,
+            'instagram_link': instagram,
+            'youtube_link': youtube,
+            'website_link': website
         }
 
         console.log(artist_form_obj)
@@ -267,6 +270,7 @@ function albumFormOneCheck(event){
 
                 console.log(data)
                 artist_form = data;
+
                 isLoading = false;
 
             },
@@ -274,16 +278,19 @@ function albumFormOneCheck(event){
                 console.log(result);
                 // failed request
                 // redirectToHome();
+
             },
             function(){ 
                 // connection error
                 console.log(result);
                 // redirectToHome();
+
             },
             function(status){ 
                 // request status error
                 console.log(result);
                 // redirectToHome();
+
             }
         );
 

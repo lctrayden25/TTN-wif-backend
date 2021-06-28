@@ -25,17 +25,66 @@ $('#loginBtn').click(function(){
 
 
     var arrayOfFormObject = [];
-    var listOfForm = document.querySelectorAll('.loginForm');
-    [].forEach.call(listOfForm, function(form) {
     var arrayOfInputObject = [];
-    var inputValue1 = form.querySelector('#email').value;
-    var inputValue2 = form.querySelector('#password').value;
+    var login_email = document.querySelector('#email').value;
+    var login_password = document.querySelector('#password').value;
     arrayOfInputObject.push({
-        value1: inputValue1,
-        value2: inputValue2
+        login_email: login_email,
+        login_password: login_password
     });
     arrayOfFormObject.push(arrayOfInputObject);
-    });
+
+    var login_obj = {
+        email: login_email,
+        password: login_password
+    }
+
+    console.log(login_obj)
+
+    postXHR(
+        'login', 
+        JSON.stringify(
+            login_obj
+        ),
+        function(result, data){ // success request
+            console.log(result);
+            // displayNews(data);
+
+            console.log(data)
+            login_form = data;
+
+            //stringify login object and save to session storage
+            login_string = JSON.stringify(login_form);
+            sessionStorage.setItem('user_login',login_string);
+
+            login_data = sessionStorage.getItem('user_login');
+            console.log(login_data)
+
+            to_loginObj = JSON.parse(login_data);
+            console.log(to_loginObj)
+
+            location.replace('campaignSubmission.html');
+
+            isLoading = false;
+        },
+        function(result, data){ 
+            console.log(result);
+            // failed request
+            // redirectToHome();
+            
+        },
+        function(){ 
+            // connection error
+            console.log(result);
+            // redirectToHome();
+        },
+        function(status){ 
+            // request status error
+            console.log(result);
+            // redirectToHome();
+        }
+    );
+
 })
 
 

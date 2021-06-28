@@ -70,3 +70,9 @@ function RenderSongName(){
 }
 
 
+$('.vote-link .submit-form').click(function(){
+  if(sessionStorage.length == 0){
+      $('a').attr("href","login.html")
+  }
+})
+

@@ -121,7 +121,7 @@ $('.trackSub').click(function(){
             var master_engineer = document.querySelector('#masterEngineer'+index).value;
             var lsrc = document.querySelector('#lsrc'+index).value;
             var song_upload = document.querySelector('#file-input'+index).value;
-            var track_streamLink = document.querySelector('#track-streamLink'+index).value;
+            var track_stream_link = document.querySelector('#track-streamLink'+index).value;
             var apple_selected = document.querySelector('#appleSelected'+index).value;
             var spotify_selected = document.querySelector('#spotifySelected'+index).value;
 
@@ -147,16 +147,28 @@ $('.trackSub').click(function(){
                 master_engineer: master_engineer,
                 lsrc: lsrc,
                 song_upload: song_upload,
-                track_streamLink: track_streamLink,
+                track_stream_link: track_stream_link,
                 apple_selected: apple_selected,
-                // spotify_selected: spotify_selected
+                spotify_selected: spotify_selected
             })
         }
 
-        console.log(arrayOfInputObject)
+        console.log(arrayOfInputObject);
+
+        login_data = sessionStorage.getItem('user_login');
+        to_loginObj = JSON.parse(login_data);
+
+
+        for(let i=0;i<lengthOfForm; i++){
+            if($('#track-streamLink'+i) == "Apple Music"){
+                track_streaming_link = apple_selected;
+            }else{
+                track_streaming_link = spotify_selected;
+            }
+        }
 
         var track_form_obj = {
-            'artist_id': '',
+            'auth_code': to_loginObj.auth_code,
             'track_name': track_name,
             'release_date': release_date,
             'track_duration': track_duration,
@@ -166,21 +178,22 @@ $('.trackSub').click(function(){
             'track_publisher': track_publisher,
             'featuring_artist': feature_artist,
             'composer': composer,
-            'composer_op': composer_op,
-            'composer_sp': composer_sp,
             'lyricist': lyricist,
-            'lyricist_op': lyricist_op,
-            'lyricist_sp': lyricist_sp,
             'arranger': arranger,
             'producer': producer,
             'recording_engineer': record_engineer,
             'mixing_engineer': mix_engineer,
             'mastering_engineer': master_engineer,
             'lsrc': lsrc,
-            'track_streaming_link': track_streamLink,
-            'album_streaming_link': apple_selected,
+            'track_streaming_link': track_streaming_link,
+            'souce_file_name': song_upload,
+
+            // 'apple_selected': apple_selected,
             // 'spotify_selected': spotify_selected,
-            'souce_file_name': song_upload
+            'composer_op': composer_op,
+            'composer_sp': composer_sp,
+            'lyricist_op': lyricist_op,
+            'lyricist_sp': lyricist_sp,
         }
 
         console.log(track_form_obj)

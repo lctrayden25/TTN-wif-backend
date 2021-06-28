@@ -52,3 +52,5 @@ window.postXHR=function(dataName, dataJson, fnSuccess, fnFail, fnRequestError, f
 	};
     request.send(data);
 }
+
+
