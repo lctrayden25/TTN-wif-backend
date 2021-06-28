@@ -55,12 +55,10 @@ h1, h3, span{
     display: none;
 }
 
-.info-ctn:hover .song-info h3, 
-.info-ctn:hover .song-info span,
-.info-ctn:hover .cover-info h3, 
-.info-ctn:hover .cover-info span,
-
-.info-ctn h3.selected, .info-ctn span.selected{
+.info-ctn:hover .song-info, 
+.info-ctn:hover .cover-info,
+.info-ctn .song-info.selected, 
+.info-ctn .cover-info.selected{
     color: #fff
 }
 
@@ -83,6 +81,10 @@ h1, h3, span{
     height: 50px;
     font-size: 25px;
     letter-spacing: 5px;
+}
+
+.button:hover{
+    cursor: pointer;
 }
 
 
