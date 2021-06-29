@@ -1,3 +1,15 @@
+$(document).ready(function(){
+    if( 'user_data' in sessionStorage){
+        $('.member-ctn .submit').empty().html('<button id="logout">Log Out</button>');
+        $('.menu-login').empty().html('<button id="logout">Log Out</button>');
+    }
+
+    $('#logout').click(function(){
+        sessionStorage.removeItem('user_data');
+        location.replace('index.html')
+    })
+  })
+
 var isLoading= false;
 
 // POST XMLHttpRequest

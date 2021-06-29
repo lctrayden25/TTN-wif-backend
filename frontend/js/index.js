@@ -78,13 +78,12 @@ $('.vote-link .submit-form').click(function(){
     var user_data_obj = JSON.parse(user_data);
 
 
-
   if(sessionStorage.length == 0){
       $('a').attr("href","login.html")
   }else{
 
       if( 'user_data' in sessionStorage){
-          $('.submit').empty();
+          $('.member-ctn .submit').empty();
 
           if(user_data_obj.is_artist == false){
             location.replace('artist-form.html')
@@ -93,7 +92,6 @@ $('.vote-link .submit-form').click(function(){
           }
       }
   }
-
 
 })
 

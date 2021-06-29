@@ -107,3 +107,22 @@ marquee span{
         display: none;
     }
 }
+
+.submit #logout{
+    background: none;
+    color: #fff;
+    border: none;
+}
+
+.menu-login #logout{
+    background: none !important;
+    color: #000;
+    border: none;
+    font-size: 35px
+}
+
+.submit #logout:hover, .menu-login #logout:hover{
+    cursor: pointer;
+    background: none !important;
+    text-decoration: underline;
+}
