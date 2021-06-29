@@ -5,7 +5,7 @@ $(document).ready(function(){
  
 
 
-var file_upload = [null];
+var file_upload = null;
 function getBase64(file, name) {
 	var reader = new FileReader();
 	reader.onload = function () {
