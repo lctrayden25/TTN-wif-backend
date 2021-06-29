@@ -132,12 +132,14 @@ $('#registerBtn').click(function(){
                 register_form = data;
 
                 register_string = JSON.stringify(register_form); 
-                sessionStorage.setItem('user_register',register_string);
+                // sessionStorage.setItem('user_register',register_string);
+                sessionStorage.setItem('user_data',register_string);
 
-                register_data = sessionStorage.getItem('user_register');
+                // register_data = sessionStorage.getItem('user_register');
+                register_data = sessionStorage.getItem('user_data');
                 to_loginObj = JSON.parse(register_data);
 
-                location.replace('campaignSubmission.html');
+                location.replace('index.html');
 
                 isLoading = false;
             },

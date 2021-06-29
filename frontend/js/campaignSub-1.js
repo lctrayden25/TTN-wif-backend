@@ -19,7 +19,7 @@ $('#nextBtn').bind("click",function(){
     }
 }); 
 
-var file_upload = null
+var file_upload = null;
 function getBase64(file, name) {
 	var reader = new FileReader();
 	reader.onload = function () {
@@ -27,13 +27,13 @@ function getBase64(file, name) {
         file64_type = name.split('.').pop();
 
         var artistImageObj = {
-            file_name: null,
-            file_type: file64_type,
-            base64: file64
+            // file_name: null,
+            upload_file_type: file64_type,
+            upload_data: file64
         }
 
         postXHR(
-            'upload_file', 
+            'upload_voting_file', 
             JSON.stringify(
                 artistImageObj
             ),
@@ -85,17 +85,12 @@ $('#file-input').change(function(event){
     }else{
         var file = this.files[0];
         $('.uploaded').html("<span style='font-size:16px'>"+filename+"</span><button class='delBtn'>Delete</button>");
-    
         $('.delBtn').click(function(){
             $('.uploaded').find('span, button').remove();
         })
         getBase64(file, filename);
     }
-    // $('.uploaded').html("<span style='font-size:16px'>"+filename+"</span><button class='delBtn'>Delete</button>");
-    
-    // $('.delBtn').click(function(){
-    //     $('.uploaded').find('span, button').remove();
-    // })
+
 })
 
 
@@ -191,6 +186,7 @@ $('#contactNumber').blur(function(){
 
 
 
+
 function albumFormOneCheck(event){
     if(!isLoading){
         event.preventDefault();
@@ -235,7 +231,8 @@ function albumFormOneCheck(event){
         arrayOfAlbumFormObject.push(arrayOfAlbumInputObject);
 
         console.log(arrayOfAlbumFormObject)
-        login_data = sessionStorage.getItem('user_login');
+        // login_data = sessionStorage.getItem('user_login');
+        login_data = sessionStorage.getItem('user_data');
         to_loginObj = JSON.parse(login_data);
         console.log(to_loginObj)
 
@@ -249,7 +246,7 @@ function albumFormOneCheck(event){
             'role_of_contact_person': role_contact_person,
             'contact_email': contact_email,
             'contact_number': contact_number,
-            'artist_photo': '',
+            'artist_photo': file_upload,
 
             'facebook_link': facebook,
             'instagram_link': instagram,
@@ -271,6 +268,8 @@ function albumFormOneCheck(event){
                 console.log(data)
                 artist_form = data;
 
+                $('#nextBtn').html('Submitted')
+                location.replace('campaignSubmission.html');
                 isLoading = false;
 
             },
@@ -278,6 +277,7 @@ function albumFormOneCheck(event){
                 console.log(result);
                 // failed request
                 // redirectToHome();
+
 
             },
             function(){ 

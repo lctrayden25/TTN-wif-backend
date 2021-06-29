@@ -1,16 +1,82 @@
 $(document).ready(function(){
-
-    
+    login_data = sessionStorage.getItem('user_data');
+    to_loginObj = JSON.parse(login_data);
 });
  
 
-$('#file-input1').change(function(e){
-    var filename = e.target.files[0].name;
-    $(this).parent().find('.song-name').html("<span style='font-size:16px'>"+filename+"</span><button class='delBtn'>Delete</button>");
 
-    $('.delBtn').click(function(){
-        $(this).parent().find('button,span').remove();
-    })
+var file_upload = [null];
+function getBase64(file, name) {
+	var reader = new FileReader();
+	reader.onload = function () {
+        file64 = reader.result;
+        file64_type = name.split('.').pop();
+
+        var song_upload = {
+            // file_name: null,
+            upload_file_type: file64_type,
+            upload_data: file64,
+            
+        }
+
+        postXHR(
+            'upload_track',
+
+            JSON.stringify(
+                song_upload
+            ),
+            function(result, data){ // success request
+                console.log(result);
+                // displayNews(data);
+
+                console.log(data)
+                file_upload = data;
+            },
+            function(result, data){ 
+                console.log(result);
+                // failed request
+                // redirectToHome();
+            },
+            function(){ 
+                // connection error
+                console.log(result);
+                // redirectToHome();
+            },
+            function(status){ 
+                // request status error
+                console.log(result);
+                // redirectToHome();
+            }
+        );
+	}
+	reader.onerror = function (error) {
+		console.log('Upload Error: ', error);
+		processing = false;
+	};
+	reader.readAsDataURL(file);
+}
+
+
+$('#file-input1').change(function(event){
+    // var filename = e.target.files[0].name;
+    // $(this).parent().find('.song-name').html("<span style='font-size:16px'>"+filename+"</span><button class='delBtn'>Delete</button>");
+
+    // $('.delBtn').click(function(){
+    //     $(this).parent().find('button,span').remove();
+    // })
+    var filename = event.target.value.split('\\')[event.target.value.split('\\').length - 1];
+    if(filename == ""){
+
+    }else{
+        var file = this.files[0];
+        $(this).parent().find('.song-name').html("<span style='font-size:16px'>"+filename+"</span><button class='delBtn'>Delete</button>");
+
+        $('.delBtn').click(function(){
+            $(this).parent().find('button,span').remove();
+        })
+
+        getBase64(file, filename);
+    }
 })
 
 
@@ -72,22 +138,38 @@ $('#addMoreTrack').click(function(){
     form_clone.find('button').click(function(){
         $('#'+formSection).remove();
         var sectionIndex = trackFormList.indexOf(formSection);
-        trackFormList.splice(sectionIndex,1)
+        trackFormList.splice(sectionIndex,1);
     })
 
-    $('#file-input'+index).change(function(){
-        var filename = this.files[0].name;
-        $(this).parent().find('.song-name').html("<span style='font-size:16px'>"+filename+"</span><button class='delBtn'>Delete</button>");
+    $('#file-input'+index).change(function(event){
+        // var filename = this.files[0].name;
+        // $(this).parent().find('.song-name').html("<span style='font-size:16px'>"+filename+"</span><button class='delBtn'>Delete</button>");
+        console.log(index)
+        var filename = event.target.value.split('\\')[event.target.value.split('\\').length - 1];
+        if(filename == ""){
     
-        $('.delBtn').click(function(){
-            $(this).parent().find('button,span').remove();
-        })
+        }else{
+            var file = this.files[0];
+            $(this).parent().find('.song-name').html("<span style='font-size:16px'>"+filename+"</span><button class='delBtn'>Delete</button>");
+    
+            $('.delBtn').click(function(){
+                $(this).parent().find('button,span').remove();
+            })
+    
+            getBase64(file, filename);
+        }
+
+        // $('.delBtn').click(function(){
+        //     $(this).parent().find('button,span').remove();
+        // })
     })
+
 
     index++
 })
 
-
+var global_array = null;
+var form_index = 0;
 $('.trackSub').click(function(){
    if(!isLoading){
         var required = $('.required-field').val();
@@ -120,20 +202,27 @@ $('.trackSub').click(function(){
             var mix_engineer = document.querySelector('#mixEngineer'+index).value;
             var master_engineer = document.querySelector('#masterEngineer'+index).value;
             var lsrc = document.querySelector('#lsrc'+index).value;
-            var song_upload = document.querySelector('#file-input'+index).value;
+            // var song_upload = document.querySelector('#file-input'+index).value;
             var track_stream_link = document.querySelector('#track-streamLink'+index).value;
             var apple_selected = document.querySelector('#appleSelected'+index).value;
             var spotify_selected = document.querySelector('#spotifySelected'+index).value;
 
+            if($('#track-streamLink'+index) == "Apple Music"){
+                track_streaming_link = apple_selected;
+            }else{
+                track_streaming_link = spotify_selected;
+            }
+
             arrayOfInputObject.push({
+                auth_code: to_loginObj.auth_code,
                 track_name: track_name,
                 release_date: release_date,
                 track_duration: track_duration,
-                track_genre: track_genre,
+                genre: track_genre,
                 contact_person: contact_person,
-                person_role: person_role,
+                role_of_contact_person: person_role,
                 track_publisher: track_publisher,
-                feature_artist: feature_artist,
+                featuring_artist: feature_artist,
                 composer: composer,
                 composer_op: composer_op,
                 composer_sp: composer_sp,
@@ -142,30 +231,34 @@ $('.trackSub').click(function(){
                 lyricist_sp: lyricist_sp,
                 arranger: arranger,
                 producer: producer,
-                record_engineer: record_engineer,
-                mix_engineer: mix_engineer,
-                master_engineer: master_engineer,
+                recording_engineer: record_engineer,
+                mixing_engineer: mix_engineer,
+                mastering_engineer: master_engineer,
                 lsrc: lsrc,
-                song_upload: song_upload,
-                track_stream_link: track_stream_link,
-                apple_selected: apple_selected,
-                spotify_selected: spotify_selected
+                souce_file_name: file_upload,
+                track_streaming_link: track_streaming_link,
+                // apple_selected: apple_selected,
+                // spotify_selected: spotify_selected,
             })
         }
 
+        global_array = arrayOfInputObject;
+        form_index = global_array.length -1;
+        recursive(form_index);
+
         console.log(arrayOfInputObject);
 
-        login_data = sessionStorage.getItem('user_login');
-        to_loginObj = JSON.parse(login_data);
+        // login_data = sessionStorage.getItem('user_data');
+        // to_loginObj = JSON.parse(login_data);
 
 
-        for(let i=0;i<lengthOfForm; i++){
-            if($('#track-streamLink'+i) == "Apple Music"){
-                track_streaming_link = apple_selected;
-            }else{
-                track_streaming_link = spotify_selected;
-            }
-        }
+        // for(let i=0;i<lengthOfForm; i++){
+        //     if($('#track-streamLink'+i) == "Apple Music"){
+        //         track_streaming_link = apple_selected;
+        //     }else{
+        //         track_streaming_link = spotify_selected;
+        //     }
+        // }
 
         var track_form_obj = {
             'auth_code': to_loginObj.auth_code,
@@ -186,10 +279,8 @@ $('.trackSub').click(function(){
             'mastering_engineer': master_engineer,
             'lsrc': lsrc,
             'track_streaming_link': track_streaming_link,
-            'souce_file_name': song_upload,
+            'souce_file_name': file_upload,
 
-            // 'apple_selected': apple_selected,
-            // 'spotify_selected': spotify_selected,
             'composer_op': composer_op,
             'composer_sp': composer_sp,
             'lyricist_op': lyricist_op,
@@ -198,38 +289,51 @@ $('.trackSub').click(function(){
 
         console.log(track_form_obj)
 
-        postXHR(
-            'new_track', 
-            JSON.stringify(
-                track_form_obj
-            ),
-            function(result, data){ // success request
-                console.log(result);
-                // displayNews(data);
-
-                console.log(data)
-                track_form = data;
-                isLoading = false;
-
-            },
-            function(result, data){ 
-                console.log(result);
-                // failed request
-                // redirectToHome();
-            },
-            function(){ 
-                // connection error
-                console.log(result);
-                // redirectToHome();
-            },
-            function(status){ 
-                // request status error
-                console.log(result);
-                // redirectToHome();
-            }
-        );
    }
 })
+
+
+function recursive(index){
+
+    if(index < 0){
+        return;
+    }
+
+    // console.log(global_array[index]);
+    // recursive(index -1);
+    // console.log(global_array[index])
+    postXHR(
+        'new_track', 
+        JSON.stringify(
+            global_array[index]
+        ),
+        function(result, data){ // success request
+            console.log(result);
+            // displayNews(data);
+
+            console.log(data)
+            // track_form = data;
+            recursive(index -1)
+        },
+        function(result, data){ 
+            console.log(result);
+            // failed request
+            // redirectToHome();
+        },
+        function(){ 
+            // connection error
+            console.log(result);
+            // redirectToHome();
+        },
+        function(status){ 
+            // request status error
+            console.log(result);
+            // redirectToHome();
+        }
+    );
+
+}
+
 
 window.addEventListener('beforeunload',function(e){
     if(isLoading){

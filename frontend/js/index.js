@@ -70,9 +70,30 @@ function RenderSongName(){
 }
 
 
+
+
 $('.vote-link .submit-form').click(function(){
+
+    var user_data = sessionStorage.getItem('user_data');
+    var user_data_obj = JSON.parse(user_data);
+
+
+
   if(sessionStorage.length == 0){
       $('a').attr("href","login.html")
+  }else{
+
+      if( 'user_data' in sessionStorage){
+          $('.submit').empty();
+
+          if(user_data_obj.is_artist == false){
+            location.replace('artist-form.html')
+          }else{
+            location.replace('campaignSubmission.html')
+          }
+      }
   }
+
+
 })
 

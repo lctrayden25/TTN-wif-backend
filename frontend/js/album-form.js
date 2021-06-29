@@ -1,23 +1,159 @@
 $(document).ready(function(){
+    login_data = sessionStorage.getItem('user_data');
+    to_loginObj = JSON.parse(login_data);
 });
 
-$('#coverUpload').change(function(e){
-    var filename = e.target.files[0].name;
-    $('.cover-name').html("<span style='font-size:16px'>"+filename+"</span><button class='delBtn'>Delete</button>");
 
-    $('.delBtn').click(function(){
-        $(this).parent().find('button,span').remove();
-    })
+
+$('#coverUpload').change(function(event){
+    // var filename = e.target.files[0].name;
+    // $('.cover-name').html("<span style='font-size:16px'>"+filename+"</span><button class='delBtn'>Delete</button>");
+
+    // $('.delBtn').click(function(){
+    //     $(this).parent().find('button,span').remove();
+    // })
+
+    var filename = event.target.value.split('\\')[event.target.value.split('\\').length - 1];
+    if(filename == ""){
+
+    }else{
+        var file = this.files[0];
+        $('.cover-name').html("<span style='font-size:16px'>"+filename+"</span><button class='delBtn'>Delete</button>");
+
+        $('.delBtn').click(function(){
+            $(this).parent().find('button,span').remove();
+        })
+
+        getBase64_cover(file, filename);
+    }
 })
 
-$('#file-input1').change(function(e){
-    var filename = e.target.files[0].name;
-    $(this).parent().find('.song-name').html("<span style='font-size:16px'>"+filename+"</span><button class='delBtn'>Delete</button>");
+var cover_file = null;
+function getBase64_cover(file, name) {
+	var reader = new FileReader();
+	reader.onload = function () {
+        file64 = reader.result;
+        file64_type = name.split('.').pop();
 
-    $('.delBtn').click(function(){
-        $(this).parent().find('button,span').remove();
-    })
+        var cover_upload = {
+            // file_name: null,
+            upload_file_type: file64_type,
+            upload_data: file64,
+        }
+
+        postXHR(
+            'upload_track',
+
+            JSON.stringify(
+                cover_upload
+            ),
+            function(result, data){ // success request
+                console.log(result);
+                // displayNews(data);
+
+                console.log(data)
+                cover_file = data;
+            },
+            function(result, data){ 
+                console.log(result);
+                // failed request
+                // redirectToHome();
+            },
+            function(){ 
+                // connection error
+                console.log(result);
+                // redirectToHome();
+            },
+            function(status){ 
+                // request status error
+                console.log(result);
+                // redirectToHome();
+            }
+        );
+	}
+	reader.onerror = function (error) {
+		console.log('Upload Error: ', error);
+		processing = false;
+	};
+	reader.readAsDataURL(file);
+}
+
+
+
+$('#file-input1').change(function(event){
+    // var filename = e.target.files[0].name;
+    // $(this).parent().find('.song-name').html("<span style='font-size:16px'>"+filename+"</span><button class='delBtn'>Delete</button>");
+
+    // $('.delBtn').click(function(){
+    //     $(this).parent().find('button,span').remove();
+    // })
+    var filename = event.target.value.split('\\')[event.target.value.split('\\').length - 1];
+    if(filename == ""){
+
+    }else{
+        var file = this.files[0];
+        $(this).parent().find('.song-name').html("<span style='font-size:16px'>"+filename+"</span><button class='delBtn'>Delete</button>");
+
+        $('.delBtn').click(function(){
+            $(this).parent().find('button,span').remove();
+        })
+
+        getBase64_song(file, filename);
+    }
 })
+
+var song_file = null;
+function getBase64_song(file, name) {
+	var reader = new FileReader();
+	reader.onload = function () {
+        file64 = reader.result;
+        file64_type = name.split('.').pop();
+
+        var song_upload = {
+            // file_name: null,
+            upload_file_type: file64_type,
+            upload_data: file64,
+            
+        }
+
+        postXHR(
+            'upload_track',
+
+            JSON.stringify(
+                song_upload
+            ),
+            function(result, data){ // success request
+                console.log(result);
+                // displayNews(data);
+
+                console.log(data)
+                song_file = data;
+            },
+            function(result, data){ 
+                console.log(result);
+                // failed request
+                // redirectToHome();
+            },
+            function(){ 
+                // connection error
+                console.log(result);
+                // redirectToHome();
+            },
+            function(status){ 
+                // request status error
+                console.log(result);
+                // redirectToHome();
+            }
+        );
+	}
+	reader.onerror = function (error) {
+		console.log('Upload Error: ', error);
+		processing = false;
+	};
+	reader.readAsDataURL(file);
+}
+
+
 
 
 $('.required-field').blur(function(){
@@ -76,13 +212,27 @@ $('#addMoreAlbum').click(function(){
         formList.splice(sectionIndex,1)
     })
 
-    $('#file-input'+index).change(function(){
-        var filename = this.files[0].name;
-        $(this).parent().find('.song-name').html("<span style='font-size:16px'>"+filename+"</span><button class='delBtn'>Delete</button>");
+    $('#file-input'+index).change(function(event){
+        // var filename = this.files[0].name;
+        // $(this).parent().find('.song-name').html("<span style='font-size:16px'>"+filename+"</span><button class='delBtn'>Delete</button>");
     
-        $('.delBtn').click(function(){
-            $(this).parent().find('button,span').remove();
-        })
+        // $('.delBtn').click(function(){
+        //     $(this).parent().find('button,span').remove();
+        // })
+        var filename = event.target.value.split('\\')[event.target.value.split('\\').length - 1];
+
+        if(filename == ""){
+    
+        }else{
+            var file = this.files[0];
+            $(this).parent().find('.song-name').html("<span style='font-size:16px'>"+filename+"</span><button class='delBtn'>Delete</button>");
+    
+            $('.delBtn').click(function(){
+                $(this).parent().find('button,span').remove();
+            })
+    
+            getBase64_song(file, filename);
+        }
     })
     
     console.log(formList)
@@ -103,7 +253,7 @@ $('.albumSub').click(function(){
 
 
         var lengthOfForm = $('.albumForm .inner-form-wrapper').length;
-        var arrayOfInputObject = [];
+        var arrayOfInputObject = null;
 
         var album_name = document.querySelector('#albumName').value;
         var release_date = document.querySelector('#releaseDate').value;
@@ -114,17 +264,27 @@ $('.albumSub').click(function(){
         var spotifyMusic = document.querySelector('#spotifyMusic').value;
         var album_exProducer = document.querySelector('#albumExProducer').value;
         var cover_upload = document.querySelector('#coverUpload').value;
-        arrayOfInputObject.push({
+
+        if(stream_link == "Apple Music"){
+            stream_link = appleMusic
+        }else{
+            stream_link = spotifyMusic
+        }
+
+        arrayOfInputObject = {
+            auth_code:to_loginObj.auth_code,
             album_name: album_name,
             release_date: release_date,
-            album_genre: album_genre,
+            genre: album_genre,
             album_publisher: album_publisher,
-            stream_link: stream_link,
-            appleMusic: appleMusic,
-            spotifyMusic: spotifyMusic,
-            album_exProducer: album_exProducer,
-            cover_upload: cover_upload
-        });
+            album_streaming_link: stream_link,
+            album_exceutive_producer: album_exProducer,
+            // appleMusic: appleMusic,
+            // spotifyMusic: spotifyMusic,
+            album_cover_img_url: cover_file,
+
+            track_list:[]
+        };
 
         for(let i=1; i<=lengthOfForm; i++){
 
@@ -143,11 +303,18 @@ $('.albumSub').click(function(){
             var mix_engineer = document.querySelector('#mixEngineer'+i).value;
             var master_engineer = document.querySelector('#masterEngineer'+i).value;
             var lsrc = document.querySelector('#lsrc'+i).value;
+            var track_streaming_link = document.querySelector('trackStreamLink'+i);
             var appleSelected = document.querySelector('#appleSelected'+i).value;
             var spotifySelected = document.querySelector('#spotifySelected'+i).value;
             var song_upload = document.querySelector('#file-input'+i).value;
 
-            arrayOfInputObject.push({
+            if($('#trackStreamLink'+i) == "Apple Music"){
+                track_streaming_link = appleSelected;
+            }else{
+                track_streaming_link = spotifyMusic;
+            }
+
+            arrayOfInputObject.track_list.push({
                 track_name: track_name,
                 track_duration: track_duration,
                 featuring_artist: featuring_artist,
@@ -159,14 +326,16 @@ $('.albumSub').click(function(){
                 lyricist_sp: lyricist_sp,
                 arranger: arranger,
                 producer: producer,
-                record_engineer: record_engineer,
-                mix_engineer: mix_engineer,
-                master_engineer: master_engineer,
+                recording_engineer: record_engineer,
+                mixing_engineer: mix_engineer,
+                mastering_engineer: master_engineer,
                 lsrc: lsrc,
+                track_streaming_link: track_streaming_link,
                 appleSelected: appleSelected,
                 spotifySelected: spotifySelected,
-                song_upload: song_upload
+                song_upload: song_file
             })
+
         }
         console.log(arrayOfInputObject)
 
@@ -178,28 +347,28 @@ $('.albumSub').click(function(){
             album_streaming_link = spotifyMusic;
         }
 
-        var album_form_obj = {
-            'auth_code':"",
-            'album_name': album_name,
-            'release_date': release_date,
-            'genre': album_genre,
-            'album_publisher': album_publisher,
-            'album_exceutive_producer': album_exProducer,
-            'album_cover_img_url': cover_upload,
-            'album_streaming_link': album_streaming_link,            
-        }
+        // var album_form_obj = {
+        //     'auth_code':"",
+        //     'album_name': album_name,
+        //     'release_date': release_date,
+        //     'genre': album_genre,
+        //     'album_publisher': album_publisher,
+        //     'album_exceutive_producer': album_exProducer,
+        //     'album_cover_img_url': cover_upload,
+        //     'album_streaming_link': album_streaming_link,            
+        // }
 
         postXHR(
             'new_album', 
             JSON.stringify(
-                album_form_obj
+                arrayOfInputObject
             ),
             function(result, data){ // success request
                 console.log(result);
                 // displayNews(data);
 
                 console.log(data)
-                register_form = data;
+                album_form = data;
 
 
                 isLoading = false;

@@ -55,15 +55,17 @@ $('#loginBtn').click(function(){
 
             //stringify login object and save to session storage
             login_string = JSON.stringify(login_form);
-            sessionStorage.setItem('user_login',login_string);
+            // sessionStorage.setItem('user_login',login_string);
+            sessionStorage.setItem('user_data',login_string);
 
-            login_data = sessionStorage.getItem('user_login');
+            // login_data = sessionStorage.getItem('user_login');
+            login_data = sessionStorage.getItem('user_data');
             console.log(login_data)
-
+ 
             to_loginObj = JSON.parse(login_data);
             console.log(to_loginObj)
 
-            location.replace('campaignSubmission.html');
+            location.replace('index.html')
 
             isLoading = false;
         },
