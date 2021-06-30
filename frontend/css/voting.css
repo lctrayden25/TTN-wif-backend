@@ -7,15 +7,29 @@ h1, h3, span{
     margin: 0 auto;
 }
 
-.right-ctn{
+.right-ctn, .list-ctn{ 
     padding-top: 60px
 }
 
-.list-wrapper{
+/* .list-wrapper{
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 1rem;
     align-items: end;
+} */
+
+.list-wrapper{
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+}
+
+.list-wrapper .item-list{
+    width: 50%;
+}
+
+.list-ctn:nth-child(even) .list-wrapper{
+    flex-direction: row-reverse;
 }
 
 .info-ctn{
@@ -110,16 +124,17 @@ h1, h3, span{
 
 /* .info-ctn:hover .voting-box, .voting-box.selected{
     display: none;
-}
+} */
 
 .info-ctn:hover .song-info, 
 .info-ctn:hover .cover-info,
 .info-ctn .song-info.selected, 
-.info-ctn .cover-info.selected{
+.info-ctn .cover-info.selected,
+.info-ctn.selected{
     color: #fff
-} */
+}
 
-.right-ctn .button-ctn{
+/* .right-ctn .button-ctn{
     text-align: right;
     padding: 40px 0;
 }
@@ -127,6 +142,14 @@ h1, h3, span{
 .left-ctn .button-ctn{
     text-align: left;
     padding: 40px 0;
+} */
+
+.list-ctn .button-ctn{
+    padding: 40px;
+}
+
+.list-ctn:nth-child(odd) .button-ctn{
+    text-align: right;
 }
 
 .button{

@@ -4,7 +4,7 @@ $(document).ready(function(){
         $('.menu-login').empty().html('<button id="logout">Log Out</button>');
     }
 
-    $('#logout').click(function(){
+    $('.submit #logout').click(function(){
         sessionStorage.removeItem('user_data');
         location.replace('index.html')
     })

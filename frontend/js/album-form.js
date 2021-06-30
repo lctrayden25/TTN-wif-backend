@@ -283,7 +283,7 @@ $('.albumSub').click(function(){
             // spotifyMusic: spotifyMusic,
             album_cover_img_url: cover_file,
 
-            track_list:[]
+            tracks:[]
         };
 
         for(let i=1; i<=lengthOfForm; i++){
@@ -314,7 +314,7 @@ $('.albumSub').click(function(){
                 track_streaming_link = spotifyMusic;
             }
 
-            arrayOfInputObject.track_list.push({
+            arrayOfInputObject.tracks.push({
                 track_name: track_name,
                 track_duration: track_duration,
                 featuring_artist: featuring_artist,
@@ -333,7 +333,7 @@ $('.albumSub').click(function(){
                 track_streaming_link: track_streaming_link,
                 appleSelected: appleSelected,
                 spotifySelected: spotifySelected,
-                song_upload: song_file
+                source_file_name: song_file
             })
 
         }

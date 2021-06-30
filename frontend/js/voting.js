@@ -1,3 +1,7 @@
+$(document).ready(function(){
+
+})
+
 $('.song-info-ctn').click(function(){
     var data_img_id = $(this).attr('data-img-id');
     $('#artist-img'+data_img_id).fadeIn().siblings().hide().fadeOut(300);
@@ -9,13 +13,30 @@ $('.cover-info-ctn').click(function(){
     $('#cover-img'+data_img_id).fadeIn().siblings().hide().fadeOut(300);
 });
 
-
+//artist voting
 // $('.info-ctn').click(function(){
 //     $(this).addClass('selected').siblings().removeClass('selected');
 
-//     $(this).children('.voting-box, .song-info, .cover-info').addClass('selected');
-//     $(this).siblings().find('.voting-box, .song-info, .cover-info').removeClass('selected');
+//     $(this).children('.song-info').addClass('selected');
+//     $(this).siblings().find('.song-info').removeClass('selected');
+
+//     $('.voting-box input').attr('checked',true);
+//     $(this).siblings().find('.voting-box input').attr('checked',false)
+
 // });
+
+
+//cover voting
+// $('.left-ctn .info-ctn').click(function(){
+//     $(this).addClass('selected').siblings().removeClass('selected');
+
+//     $(this).children('.cover-info').addClass('selected');
+//     $(this).siblings().find('.cover-info').removeClass('selected');
+
+//     $('.cover-voting input').attr('checked',true);
+//     $(this).siblings().find('.cover-voting input').attr('checked',false)
+// })
+
 
 
 $('#artist-vote').click(function(){

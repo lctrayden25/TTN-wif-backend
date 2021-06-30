@@ -1,29 +1,8 @@
-var listArr = [
-    "PUBBERBAND",
-    "SERRINI",
-    "MATT FORCE",
-    "JAN CURIOUS & TOMBEATS",
-    "LIFE WAS ALL SIENCE",
-    "GIGI & SABRINA", 
-    "RAIN IN TIME 及時雨", 
-    "BUBBLEVIRUS",
-    "逆流",
-    "Testing Testing",
-    "testing",
-    "tteessttiinngg",
-    "hello",
-    "world",
-    "olleh",
-    "dlrow",
-    "abcd",
-    "grddg",
-    "teisng"
-];
-
+var listArr = [];
 var listItem = document.getElementById("listItem");
 
-loopSongOrder();
 
+// loopSongOrder();
 function loopSongOrder(){
   shuffle();
   setInterval(function(){
@@ -70,28 +49,126 @@ function RenderSongName(){
 }
 
 
-
-
 $('.vote-link .submit-form').click(function(){
 
     var user_data = sessionStorage.getItem('user_data');
     var user_data_obj = JSON.parse(user_data);
 
 
-  if(sessionStorage.length == 0){
-      $('a').attr("href","login.html")
-  }else{
+    if(sessionStorage.length == 0){
+        $('a').attr("href","login.html")
+    }else{
 
-      if( 'user_data' in sessionStorage){
-          $('.member-ctn .submit').empty();
+        if( 'user_data' in sessionStorage){
+            $('.member-ctn .submit').empty();
 
-          if(user_data_obj.is_artist == false){
-            location.replace('artist-form.html')
-          }else{
-            location.replace('campaignSubmission.html')
-          }
-      }
-  }
-
+            if(user_data_obj.is_artist == false){
+              location.replace('artist-form.html')
+            }else{
+              location.replace('campaignSubmission.html')
+            }
+        }
+    }
 })
 
+$('.vote-link .voting-form').click(function(){
+    if(sessionStorage.length == 0){
+        $('a').attr("href","login.html");
+    }else{
+        $('a').attr("href","voting.html");
+    }
+})
+
+
+
+function getSongListData(){
+    postXHR(
+      'get_all_data_by_data_type', 
+      JSON.stringify({
+          data_type: 'voting_slogan_data'
+      }),
+      function(result, data){ // success request
+          console.log(result);
+          // displayNews(data);
+
+          // if(data === undefined || data === null || data == "" || data.length<1){
+          //     window.location.href="index.html"
+          // }else{
+          //     job_desc = data;
+          //     console.log(data)
+          //     getJobDesc();
+          // }
+          songlist = data
+          getSongList()
+          loopSongOrder();
+
+      },
+      function(result, data){ 
+          console.log(result);
+          // failed request
+          // redirectToHome();
+      },
+      function(){ 
+          // connection error
+          console.log(result);
+          // redirectToHome();
+      },
+      function(status){ 
+          // request status error
+          console.log(result);
+          // redirectToHome();
+      }
+    );
+}
+
+function getTopSloganData(){
+    postXHR(
+      'get_all_data_by_data_type', 
+      JSON.stringify({
+          data_type: 'voting__top_slogan_data'
+      }),
+      function(result, data){ // success request
+          console.log(result);
+          topSlogan = data
+          console.log(topSlogan)
+
+          getTopSlogan()
+
+      },
+      function(result, data){ 
+          console.log(result);
+          // failed request
+          // redirectToHome();
+      },
+      function(){ 
+          // connection error
+          console.log(result);
+          // redirectToHome();
+      },
+      function(status){ 
+          // request status error
+          console.log(result);
+          // redirectToHome();
+      }
+    );
+}
+
+
+function getSongList(){
+    var list_length = songlist.item_list.length;
+
+    for(let i=0; i<list_length; i++){
+        listArr.push(songlist.item_list[i].title)
+    }
+}
+
+function getTopSlogan(){
+  var top_slogan_length = topSlogan.item_list.length;
+
+  for(let i=0; i<top_slogan_length; i++){
+    $('.slide-text span').html(topSlogan.item_list[i].title)
+  }
+}
+
+getSongListData()
+getTopSloganData()

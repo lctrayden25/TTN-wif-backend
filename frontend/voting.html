@@ -75,7 +75,7 @@
         </div>
 
         <div class="container">
-            <div class="right-ctn">
+            <!-- <div class="right-ctn list-ctn">
                 <div class="big-title">
                     <h1>最佳女歌手</h1>
                 </div>
@@ -87,14 +87,14 @@
                         <img src="./img/cover-img/1a-kay-tse-hk-concert.jpg" id="artist-img4" style="display: none;">
                         <img src="./img/cover-img/1a-kay-tse-hk-concert.jpg" id="artist-img5" style="display: none;">
                     </div>
-                    <div class="song-list">
+                    <div class="item-list">
                         <div class="song-info-ctn info-ctn" data-img-id="1">
                             <div class="song-info">
                                 <h3>謝安琪</h3>
                                 <span>你們的幸福</span>
                             </div>
-                            <div class="voting-box">
-                                <input type = "checkbox" checked="checked">
+                            <div class="voting-box artist-voting">
+                                <input type = "checkbox" >
                                 <span class = "checkmark"></span>
                             </div>
                         </div>
@@ -103,49 +103,62 @@
                                 <h3>謝安琪</h3>
                                 <span>你們的幸福</span>
                             </div>
-                            <div class="voting-box"></div>
+                            <div class="voting-box artist-voting">
+                                <input type = "checkbox">
+                                <span class = "checkmark"></span>
+                            </div>
                         </div>
                         <div class="song-info-ctn info-ctn" data-img-id="3">
                             <div class="song-info">
                                 <h3>謝安琪</h3>
                                 <span>你們的幸福</span>
                             </div>
-                            <div class="voting-box"></div>
+                            <div class="voting-box artist-voting">
+                                <input type = "checkbox">
+                                <span class = "checkmark"></span>
+                            </div>
                         </div>
                         <div class="song-info-ctn info-ctn" data-img-id="4">
                             <div class="song-info">
                                 <h3>謝安琪</h3>
                                 <span>你們的幸福</span>
                             </div>
-                            <div class="voting-box"></div>
+                            <div class="voting-box artist-voting">
+                                <input type = "checkbox">
+                                <span class = "checkmark"></span>
+                            </div>
                         </div>
                         <div class="song-info-ctn info-ctn" data-img-id="5">
                             <div class="song-info">
                                 <h3>謝安琪</h3>
                                 <span>你們的幸福</span>
                             </div>
-                            <div class="voting-box"></div>
+                            <div class="voting-box artist-voting">
+                                <input type = "checkbox">
+                                <span class = "checkmark"></span>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="button-ctn">
                     <button class="button" id="artist-vote">投票</button>
                 </div>
-            </div>
+            </div> -->
 
-            <div class="left-ctn">
+            <!-- <div class="left-ctn list-ctn">
                 <div class="big-title">
                     <h1>最佳專輯</h1>
                 </div>
                 <div class="list-wrapper">
-                    <div class="cover-list">
+                    <div class="item-list">
                         <div class="cover-info-ctn info-ctn" data-img-id="1">
                             <div class="cover-info">
                                 <h3>你們的幸福</h3>
                                 <p><span>謝安琪</span></p>
                             </div>
-                            <div class="voting-box">
-                                
+                            <div class="voting-box cover-voting">
+                                <input type = "checkbox">
+                                <span class = "checkmark"></span>
                             </div>
                         </div>
                         <div class="cover-info-ctn info-ctn" data-img-id="2">
@@ -153,8 +166,9 @@
                                 <h3>你們的幸福</h3>
                                 <span>謝安琪</span>
                             </div>
-                            <div class="voting-box">
-                                
+                            <div class="voting-box cover-voting">
+                                <input type = "checkbox">
+                                <span class = "checkmark"></span>
                             </div>
                         </div>
                         <div class="cover-info-ctn info-ctn" data-img-id="3">
@@ -162,8 +176,9 @@
                                 <h3>你們的幸福</h3>
                                 <span>謝安琪</span>
                             </div>
-                            <div class="voting-box">
-                                
+                            <div class="voting-box cover-voting">
+                                <input type = "checkbox">
+                                <span class = "checkmark"></span>
                             </div>
                         </div>
                         <div class="cover-info-ctn info-ctn" data-img-id="4">
@@ -171,8 +186,9 @@
                                 <h3>你們的幸福</h3>
                                 <span>謝安琪</span>
                             </div>
-                            <div class="voting-box">
-                                
+                            <div class="voting-box cover-voting">
+                                <input type = "checkbox">
+                                <span class = "checkmark"></span>
                             </div>
                         </div>
                         <div class="cover-info-ctn info-ctn" data-img-id="5">
@@ -180,8 +196,9 @@
                                 <h3>你們的幸福</h3>
                                 <span>謝安琪</span>
                             </div>
-                            <div class="voting-box">
-                                
+                            <div class="voting-box cover-voting">
+                                <input type = "checkbox">
+                                <span class = "checkmark"></span>
                             </div>
                         </div>
                     </div>
@@ -196,7 +213,7 @@
                 <div class="button-ctn">
                     <button class="button" id="cover-vote">投票</button>
                 </div>
-            </div>
+            </div> -->
         </div>
 
         <footer style="border: 1px solid #000;">
@@ -230,10 +247,229 @@
             </div>
         </footer>
 
+
+        <!-- <div class="artist-template" style="display: none;">
+            <div class="right-ctn list-ctn" id="right-campaign">
+                <div class="big-title">
+                    <h1></h1>
+                </div>
+                <div class="list-wrapper">
+                    <div class="artist-img">
+                        
+                    </div>
+                    <div class="item-list">
+                        <div class="song-info-ctn info-ctn">
+                            <div class="song-info">
+                                <h3></h3>
+                                <span></span>
+                            </div>
+                            <div class="voting-box artist-voting">
+                                <input type = "checkbox" >
+                                <span class = "checkmark"></span>
+                            </div>
+                        </div>
+                        <div class="song-info-ctn info-ctn" data-img-id="2">
+                            <div class="song-info">
+                                <h3></h3>
+                                <span></span>
+                            </div>
+                            <div class="voting-box artist-voting">
+                                <input type = "checkbox">
+                                <span class = "checkmark"></span>
+                            </div>
+                        </div>
+                        <div class="song-info-ctn info-ctn" data-img-id="3">
+                            <div class="song-info">
+                                <h3></h3>
+                                <span></span>
+                            </div>
+                            <div class="voting-box artist-voting">
+                                <input type = "checkbox">
+                                <span class = "checkmark"></span>
+                            </div>
+                        </div>
+                        <div class="song-info-ctn info-ctn" data-img-id="4">
+                            <div class="song-info">
+                                <h3></h3>
+                                <span></span>
+                            </div>
+                            <div class="voting-box artist-voting">
+                                <input type = "checkbox">
+                                <span class = "checkmark"></span>
+                            </div>
+                        </div>
+                        <div class="song-info-ctn info-ctn" data-img-id="5">
+                            <div class="song-info">
+                                <h3></h3>
+                                <span></span>
+                            </div>
+                            <div class="voting-box artist-voting">
+                                <input type = "checkbox">
+                                <span class = "checkmark"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="button-ctn">
+                    <button class="button" id="artist-vote">投票</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="album-template" style="display: none;">
+            <div class="left-ctn list-ctn" id="left-campaign">
+                <div class="big-title">
+                    <h1></h1>
+                </div>
+                <div class="list-wrapper">
+                    <div class="item-list">
+                        <div class="cover-info-ctn info-ctn">
+                            <div class="cover-info">
+                                <h3></h3>
+                                <p><span></span></p>
+                            </div>
+                            <div class="voting-box cover-voting">
+                                <input type = "checkbox">
+                                <span class = "checkmark"></span>
+                            </div>
+                        </div>
+                        <div class="cover-info-ctn info-ctn">
+                            <div class="cover-info">
+                                <h3></h3>
+                                <span></span>
+                            </div>
+                            <div class="voting-box cover-voting">
+                                <input type = "checkbox">
+                                <span class = "checkmark"></span>
+                            </div>
+                        </div>
+                        <div class="cover-info-ctn info-ctn">
+                            <div class="cover-info">
+                                <h3></h3>
+                                <span></span>
+                            </div>
+                            <div class="voting-box cover-voting">
+                                <input type = "checkbox">
+                                <span class = "checkmark"></span>
+                            </div>
+                        </div>
+                        <div class="cover-info-ctn info-ctn">
+                            <div class="cover-info">
+                                <h3></h3>
+                                <span></span>
+                            </div>
+                            <div class="voting-box cover-voting">
+                                <input type = "checkbox">
+                                <span class = "checkmark"></span>
+                            </div>
+                        </div>
+                        <div class="cover-info-ctn info-ctn">
+                            <div class="cover-info">
+                                <h3></h3>
+                                <span></span>
+                            </div>
+                            <div class="voting-box cover-voting">
+                                <input type = "checkbox">
+                                <span class = "checkmark"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cover-img">
+                       
+                    </div>
+                </div>
+                <div class="button-ctn">
+                    <button class="button" id="cover-vote">投票</button>
+                </div>
+            </div>
+        </div> -->
+
+
+        <div class="template" style="display: none;">
+            <div class="list-ctn" id="campaign">
+                <div class="big-title">
+                    <h1></h1>
+                </div>
+                <div class="list-wrapper">
+                    <div class="artist-img">
+                    
+                    </div>
+                    <div class="item-list">
+                        <!-- <div class="song-info-ctn info-ctn">
+                            <div class="song-info">
+                                <h3></h3>
+                                <span></span>
+                            </div>
+                            <div class="voting-box artist-voting">
+                                <input type = "checkbox" >
+                                <span class = "checkmark"></span>
+                            </div>
+                        </div> -->
+                        <!-- <div class="song-info-ctn info-ctn">
+                            <div class="song-info">
+                                <h3></h3>
+                                <span></span>
+                            </div>
+                            <div class="voting-box artist-voting">
+                                <input type = "checkbox">
+                                <span class = "checkmark"></span>
+                            </div>
+                        </div>
+                        <div class="song-info-ctn info-ctn">
+                            <div class="song-info">
+                                <h3></h3>
+                                <span></span>
+                            </div>
+                            <div class="voting-box artist-voting">
+                                <input type = "checkbox">
+                                <span class = "checkmark"></span>
+                            </div>
+                        </div>
+                        <div class="song-info-ctn info-ctn">
+                            <div class="song-info">
+                                <h3></h3>
+                                <span></span>
+                            </div>
+                            <div class="voting-box artist-voting">
+                                <input type = "checkbox">
+                                <span class = "checkmark"></span>
+                            </div>
+                        </div>
+                        <div class="song-info-ctn info-ctn" >
+                            <div class="song-info">
+                                <h3></h3>
+                                <span></span>
+                            </div>
+                            <div class="voting-box artist-voting">
+                                <input type = "checkbox">
+                                <span class = "checkmark"></span>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+                <div class="button-ctn">
+                    <button class="button" id="artist-vote">投票</button>
+                </div>
+            </div>
+
+            <img src="img/cover-img/1a-kay-tse-hk-concert.jpg" id="artist-img">
+            <div class="info-ctn">
+                <div class="song-info">
+                    <h3></h3>
+                    <span></span>
+                </div>
+                <div class="voting-box">
+                    <input type="checkbox" >
+                    <span class="checkmark"></span>
+                </div>
+            </div>
+        </div>
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="js/sideMenu.js"></script>
         <script src="js/footer.js"></script>
         <script src="js/global.js"></script>
         <script src="js/voting.js"></script>
+        <script src="js/voting-data.js"></script>
     </body>
 </html>
