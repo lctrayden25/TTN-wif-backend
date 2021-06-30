@@ -10,12 +10,12 @@ $('.cover-info-ctn').click(function(){
 });
 
 
-$('.info-ctn').click(function(){
-    $(this).addClass('selected').siblings().removeClass('selected');
+// $('.info-ctn').click(function(){
+//     $(this).addClass('selected').siblings().removeClass('selected');
 
-    $(this).children('.voting-box, .song-info, .cover-info').addClass('selected');
-    $(this).siblings().find('.voting-box, .song-info, .cover-info').removeClass('selected');
-});
+//     $(this).children('.voting-box, .song-info, .cover-info').addClass('selected');
+//     $(this).siblings().find('.voting-box, .song-info, .cover-info').removeClass('selected');
+// });
 
 
 $('#artist-vote').click(function(){

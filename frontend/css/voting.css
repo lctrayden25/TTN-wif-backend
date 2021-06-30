@@ -30,12 +30,69 @@ h1, h3, span{
     padding-top:0
 } */
 
-.info-ctn .voting-box{
+/* .info-ctn .voting-box{
     width: 50px;
     height: 40px;
     border: 1px solid red;
     background: transparent;
+} */
+
+/* checbox style */
+.voting-box {
+    position: relative;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
+
+.voting-box input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    position: absolute;
+    top: -15px;
+    right: 0;
+    height: 35px;
+    width: 50px;
+    background-color: #fff;
+    border: 1px solid #ff4d00
+}
+
+.voting-box:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+
+
+.checkmark:after{
+    position: absolute;
+    content: "";
+    display: none;
+}
+
+.voting-box input:checked ~ .checkmark:after{
+    display: block;
+}
+
+.voting-box .checkmark:after {
+    left: 16px;
+    top: 0px;
+    width: 10px;
+    height: 20px;
+    border: solid #ff4d00;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+/* checbox style end*/
 
 .song-info h3, .cover-info h3{
     font-size: 28px;
@@ -51,7 +108,7 @@ h1, h3, span{
 
 
 
-.info-ctn:hover .voting-box, .voting-box.selected{
+/* .info-ctn:hover .voting-box, .voting-box.selected{
     display: none;
 }
 
@@ -60,7 +117,7 @@ h1, h3, span{
 .info-ctn .song-info.selected, 
 .info-ctn .cover-info.selected{
     color: #fff
-}
+} */
 
 .right-ctn .button-ctn{
     text-align: right;

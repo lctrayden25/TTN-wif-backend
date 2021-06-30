@@ -16,7 +16,6 @@ function getBase64(file, name) {
             // file_name: null,
             upload_file_type: file64_type,
             upload_data: file64,
-            
         }
 
         postXHR(
