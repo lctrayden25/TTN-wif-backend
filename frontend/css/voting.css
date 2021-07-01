@@ -36,11 +36,11 @@ h1, h3, span{
     flex-direction: row-reverse;
 }
 
-.list-ctn:nth-child(even) .info-ctn .song-info{
+/* .list-ctn:nth-child(even) .info-ctn .song-info{
     display: flex;
     flex-direction: column-reverse;
     justify-content: space-between;
-}
+} */
 
 .info-ctn{
     padding:10px;
@@ -155,7 +155,7 @@ h1, h3, span{
 } */
 
 .list-ctn .button-ctn{
-    padding: 40px;
+    padding: 40px 0;
 }
 
 .list-ctn:nth-child(odd) .button-ctn{

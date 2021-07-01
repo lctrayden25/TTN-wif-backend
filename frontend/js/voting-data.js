@@ -59,12 +59,18 @@ function list(){
             var info_ctn_clone = $('.template .info-ctn').clone();
             info_ctn_clone.appendTo('#campaign'+i+' .item-list');
 
-            var artist_img = $('.template img').clone();
+            var artist_img = $('.template #artist-img').clone();
             artist_img.appendTo('#campaign'+i+' .artist-img');
-            artist_img.attr('id','artist-img'+'-'+i+j);
+            artist_img.attr('id','artist-img-'+i+j);
 
-            $('#campaign'+i+' .song-info h3').html(campaign_data.item_list[i].option_data[j].artist_name);
-            // $('#campaign'+i+' .song-info span').html(campaign_data.item_list[i].option_data[i].artist_name);
+            // $('#campaign'+i+' .song-info h3').html(campaign_data.item_list[i].option_data[j].artist_name);
+
+            //check if voting album, default false
+            if(campaign_data.item_list[i].is_voting_album == false){
+                $('#campaign'+i+' .song-info h3').html(campaign_data.item_list[i].option_data[j].artist_name);
+            }else{
+                $('#campaign'+i+' .song-info span').html(campaign_data.item_list[i].option_data[j].artist_name);
+            }
         }
 
         $('#campaign'+i+' img:not(:first)').hide();
