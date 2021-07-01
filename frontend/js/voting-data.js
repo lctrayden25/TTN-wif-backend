@@ -55,15 +55,18 @@ function list(){
 
         var item_list_length = campaign_data.item_list[i].option_list.length;
 
-        for(var j=0; j<item_list_length; j++){
+        for(let j=0; j<item_list_length; j++){
+            
+            //clone .info-ctn
             var info_ctn_clone = $('.template .info-ctn').clone();
             info_ctn_clone.appendTo('#campaign'+i+' .item-list');
+            info_ctn_clone.attr('data-info-id',''+i+j)
 
+            //clone artist image
             var artist_img = $('.template #artist-img').clone();
             artist_img.appendTo('#campaign'+i+' .artist-img');
             artist_img.attr('id','artist-img-'+i+j);
 
-            // $('#campaign'+i+' .song-info h3').html(campaign_data.item_list[i].option_data[j].artist_name);
 
             //check if voting album, default false
             if(campaign_data.item_list[i].is_voting_album == false){
@@ -71,11 +74,19 @@ function list(){
             }else{
                 $('#campaign'+i+' .song-info span').html(campaign_data.item_list[i].option_data[j].artist_name);
             }
+            
+            //Show image when click
+            $('#campaign'+i+' .info-ctn').click(function(){
+                var info_data_id = $(this).attr('data-info-id');
+                $('#artist-img-'+info_data_id).fadeIn().siblings().hide();
+            })
         }
 
         $('#campaign'+i+' img:not(:first)').hide();
         $('#campaign'+i+' .song-info span').html("Hello Word")
 
+
+        //Check the box
         $('#campaign'+i+' .info-ctn').click(function(){
             $(this).addClass('selected')
             $(this).siblings().removeClass('selected');
