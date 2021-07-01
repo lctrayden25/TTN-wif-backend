@@ -86,7 +86,7 @@ function list(){
         $('#campaign'+i+' .song-info span').html("Hello Word")
 
 
-        //Check the box
+        //Check the voting box
         $('#campaign'+i+' .info-ctn').click(function(){
             $(this).addClass('selected')
             $(this).siblings().removeClass('selected');
