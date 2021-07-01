@@ -49,6 +49,7 @@ function list(){
         var list_ctn_clone = $('.template .list-ctn').clone();
         list_ctn_clone.appendTo('.container');
         $('.container #campaign').attr('id','campaign'+i)
+        $('.container #campaign'+i+' #voting-btn').attr('id','voting-btn'+i)
 
         $('#campaign'+i+' .big-title h1').html(campaign_data.item_list[i].campaign_name);
 
@@ -61,10 +62,12 @@ function list(){
             var artist_img = $('.template img').clone();
             artist_img.appendTo('#campaign'+i+' .artist-img');
             artist_img.attr('id','artist-img'+'-'+i+j);
+
+            $('#campaign'+i+' .song-info h3').html(campaign_data.item_list[i].option_data[j].artist_name);
+            // $('#campaign'+i+' .song-info span').html(campaign_data.item_list[i].option_data[i].artist_name);
         }
 
         $('#campaign'+i+' img:not(:first)').hide();
-        $('#campaign'+i+' .song-info h3').html("謝安");
         $('#campaign'+i+' .song-info span').html("Hello Word")
 
         $('#campaign'+i+' .info-ctn').click(function(){
@@ -74,8 +77,6 @@ function list(){
             $(this).siblings().find('input').attr('checked',false);
         })
     }
-
-    
 
 }
 

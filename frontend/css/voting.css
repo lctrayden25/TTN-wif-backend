@@ -7,9 +7,13 @@ h1, h3, span{
     margin: 0 auto;
 }
 
-.right-ctn, .list-ctn{ 
+.list-ctn{ 
     padding-top: 60px
 }
+
+/* .list-ctn .artist-img{
+    padding:20px
+} */
 
 /* .list-wrapper{
     display: grid;
@@ -30,6 +34,12 @@ h1, h3, span{
 
 .list-ctn:nth-child(even) .list-wrapper{
     flex-direction: row-reverse;
+}
+
+.list-ctn:nth-child(even) .info-ctn .song-info{
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-between;
 }
 
 .info-ctn{
