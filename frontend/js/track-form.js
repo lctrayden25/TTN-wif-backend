@@ -4,9 +4,12 @@ $(document).ready(function(){
 });
  
 
-
+// Track song upload
+var arrayOfFileUpload = [];
 var file_upload = null;
-function getBase64(file, name) {
+
+var sng_file_id = null;
+function getBase64_songUpload(file, name) {
 	var reader = new FileReader();
 	reader.onload = function () {
         file64 = reader.result;
@@ -30,6 +33,14 @@ function getBase64(file, name) {
 
                 console.log(data)
                 file_upload = data;
+
+                arrayOfFileUpload.push({
+                    file_id: song_file_id,
+                    song_data:file_upload
+                })
+
+                console.log(arrayOfFileUpload)
+                
             },
             function(result, data){ 
                 console.log(result);
@@ -57,12 +68,76 @@ function getBase64(file, name) {
 
 
 $('#file-input1').change(function(event){
-    // var filename = e.target.files[0].name;
-    // $(this).parent().find('.song-name').html("<span style='font-size:16px'>"+filename+"</span><button class='delBtn'>Delete</button>");
+    song_file_id = event.target.id;
 
-    // $('.delBtn').click(function(){
-    //     $(this).parent().find('button,span').remove();
-    // })
+    var filename = event.target.value.split('\\')[event.target.value.split('\\').length - 1];
+    if(filename == ""){
+
+    }else{
+        var file = this.files[0];
+        $(this).parent().find('.song-name').html("<span style='font-size:16px'>"+filename+"</span><button class='delBtn'>Delete</button>");
+
+        $('.delBtn').click(function(){
+            $(this).parent().find('button,span').remove();
+        })
+        getBase64_songUpload(file, filename);
+    }
+
+})
+
+
+// Track image upload
+var track_img_upload = null;
+function getBase64_trackImageUpload(file, name) {
+	var reader = new FileReader();
+	reader.onload = function () {
+        file64 = reader.result;
+        file64_type = name.split('.').pop();
+
+        var track_image_upload = {
+            // file_name: null,
+            upload_file_type: file64_type,
+            upload_data: file64,
+        }
+
+        postXHR(
+            'upload_track',
+
+            JSON.stringify(
+                track_image_upload
+            ),
+            function(result, data){ // success request
+                console.log(result);
+                // displayNews(data);
+
+                console.log(data)
+                track_img_upload = data;
+            },
+            function(result, data){ 
+                console.log(result);
+                // failed request
+                // redirectToHome();
+            },
+            function(){ 
+                // connection error
+                console.log(result);
+                // redirectToHome();
+            },
+            function(status){ 
+                // request status error
+                console.log(result);
+                // redirectToHome();
+            }
+        );
+	}
+	reader.onerror = function (error) {
+		console.log('Upload Error: ', error);
+		processing = false;
+	};
+	reader.readAsDataURL(file);
+}
+
+$('#trackImage-upload1').change(function(event){
     var filename = event.target.value.split('\\')[event.target.value.split('\\').length - 1];
     if(filename == ""){
 
@@ -74,10 +149,9 @@ $('#file-input1').change(function(event){
             $(this).parent().find('button,span').remove();
         })
 
-        getBase64(file, filename);
+        getBase64_trackImageUpload(file, filename);
     }
 })
-
 
 
 $('.required-field').blur(function(){
@@ -93,7 +167,8 @@ $('.required-field').blur(function(){
 
 var index = 2;
 var trackFormList = ["track-form1"]
-$('#addMoreTrack').click(function(){
+$('#addMoreTrack').click(function(event){
+
     var form_clone = $('.form-template .form-wrapper').clone();
 
     form_clone.find('.required-field').css('border','1px solid #000');
@@ -106,6 +181,7 @@ $('#addMoreTrack').click(function(){
     form_clone.find('#track').attr('id','track'+index).html('TRACK '+index);
 
     form_clone.find(".file-btn-ctn label").attr('for','file-input'+index)
+    form_clone.find(".file-btn-ctn label.trackImageUpload-btn").attr('for','trackImage-upload'+index)
 
     form_clone.find('#trackName').attr('id','trackName'+index);
     form_clone.find('#releaseDate').attr('id','releaseDate'+index);
@@ -131,6 +207,7 @@ $('#addMoreTrack').click(function(){
     form_clone.find('#appleSelected').attr('id','appleSelected'+index);
     form_clone.find('#spotifySelected').attr('id','spotifySelected'+index);
     form_clone.find('#file-input').attr('id','file-input'+index);
+    form_clone.find('#trackImage-upload').attr('id','trackImage-upload'+index);
 
     trackFormList.push(formSection);
 
@@ -141,9 +218,7 @@ $('#addMoreTrack').click(function(){
     })
 
     $('#file-input'+index).change(function(event){
-        // var filename = this.files[0].name;
-        // $(this).parent().find('.song-name').html("<span style='font-size:16px'>"+filename+"</span><button class='delBtn'>Delete</button>");
-        console.log(index)
+        song_file_id = event.target.id;
         var filename = event.target.value.split('\\')[event.target.value.split('\\').length - 1];
         if(filename == ""){
     
@@ -155,10 +230,26 @@ $('#addMoreTrack').click(function(){
                 $(this).parent().find('button,span').remove();
             })
     
-            getBase64(file, filename);
+            getBase64_songUpload(file, filename);
         }
     })
 
+
+    $('#trackImage-upload'+index).change(function(event){
+        var filename = event.target.value.split('\\')[event.target.value.split('\\').length - 1];
+        if(filename == ""){
+    
+        }else{
+            var file = this.files[0];
+            $(this).parent().find('.song-name').html("<span style='font-size:16px'>"+filename+"</span><button class='delBtn'>Delete</button>");
+    
+            $('.delBtn').click(function(){
+                $(this).parent().find('button,span').remove();
+            })
+    
+            getBase64_trackImageUpload(file, filename);
+        }
+    })
 
     index++
 })
@@ -270,6 +361,8 @@ $('.trackSub').click(function(){
         }
 
         console.log(track_form_obj)
+
+        alert('You have submitted the form successfully.')
 
    }
 })

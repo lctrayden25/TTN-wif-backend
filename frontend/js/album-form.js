@@ -351,6 +351,8 @@ $('.albumSub').click(function(){
                 // redirectToHome();
             }
         );
+    
+        alert('You have submitted the form successfully.')
     }
 });
 

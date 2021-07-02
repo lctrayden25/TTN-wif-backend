@@ -54,15 +54,18 @@ function getList(){
         // show campaign name
         $('#campaign'+i+' .big-title h1').html(campaign_data.item_list[i].campaign_name);
 
+
         // check how many option_data inside item_list
         var option_data_length = campaign_data.item_list[i].option_data.length;
         for(let j=0; j<option_data_length; j++){
             
+
             //clone .info-ctn
             var info_ctn_clone = $('.template .info-ctn').clone();
             info_ctn_clone.appendTo('#campaign'+i+' .item-list');
             info_ctn_clone.attr('data-info-id',''+i+j)
             info_ctn_clone.attr('id','info-ctn-'+i+j)
+
 
             //clone artist image
             var artist_img = $('.template #artist-img').clone();
@@ -72,7 +75,6 @@ function getList(){
 
             var album_img_src = campaign_data.item_list[i].option_data[j].album_cover_img_url;
             var track_img_src = campaign_data.item_list[i].option_data[j].artist_photo;
-            console.log(track_img_src)
 
             // voting album
             if(campaign_data.item_list[i].is_voting_album == true){
@@ -99,7 +101,6 @@ function getList(){
         }
 
         $('#campaign'+i+' img:not(:first)').hide();
-        // $('#campaign'+i+' .song-info span').html("Hello Word")
 
 
         //Check the voting box

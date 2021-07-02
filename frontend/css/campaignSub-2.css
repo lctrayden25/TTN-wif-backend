@@ -126,3 +126,8 @@ button.delBtn:hover{
     background: #000 !important;
     color: #fff
 }
+
+
+.track-img-wrapper{
+    padding-top: 40px
+}
