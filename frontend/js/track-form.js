@@ -8,7 +8,7 @@ $(document).ready(function(){
 var arrayOfFileUpload = [];
 var file_upload = null;
 
-var sng_file_id = null;
+var song_file_id = null;
 function getBase64_songUpload(file, name) {
 	var reader = new FileReader();
 	reader.onload = function () {
@@ -299,6 +299,8 @@ $('.trackSub').click(function(){
                 track_streaming_link = spotifySelected;
             }
 
+            var song = arrayOfFileUpload.find(function(element){return element.file_id == 'file-input'+index})
+
             arrayOfInputObject.push({
                 auth_code: to_loginObj.auth_code,
                 track_name: track_name,
@@ -321,7 +323,7 @@ $('.trackSub').click(function(){
                 mixing_engineer: mix_engineer,
                 mastering_engineer: master_engineer,
                 lsrc: lsrc,
-                source_file_name: file_upload,
+                source_file_name: song.song_data,
                 track_streaming_link: track_streaming_link,
             })
         }
