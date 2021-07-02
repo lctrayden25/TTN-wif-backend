@@ -157,10 +157,6 @@ $('#addMoreTrack').click(function(){
     
             getBase64(file, filename);
         }
-
-        // $('.delBtn').click(function(){
-        //     $(this).parent().find('button,span').remove();
-        // })
     })
 
 
@@ -234,10 +230,8 @@ $('.trackSub').click(function(){
                 mixing_engineer: mix_engineer,
                 mastering_engineer: master_engineer,
                 lsrc: lsrc,
-                souce_file_name: file_upload,
+                source_file_name: file_upload,
                 track_streaming_link: track_streaming_link,
-                // apple_selected: apple_selected,
-                // spotify_selected: spotify_selected,
             })
         }
 
@@ -247,17 +241,6 @@ $('.trackSub').click(function(){
 
         console.log(arrayOfInputObject);
 
-        // login_data = sessionStorage.getItem('user_data');
-        // to_loginObj = JSON.parse(login_data);
-
-
-        // for(let i=0;i<lengthOfForm; i++){
-        //     if($('#track-streamLink'+i) == "Apple Music"){
-        //         track_streaming_link = apple_selected;
-        //     }else{
-        //         track_streaming_link = spotify_selected;
-        //     }
-        // }
 
         var track_form_obj = {
             'auth_code': to_loginObj.auth_code,
@@ -299,6 +282,7 @@ function recursive(index){
     }
 
     // console.log(global_array[index]);
+    // console.log(global_array)
     // recursive(index -1);
     // console.log(global_array[index])
     postXHR(

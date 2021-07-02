@@ -121,38 +121,6 @@ function getSongListData(){
     );
 }
 
-function getTopSloganData(){
-    postXHR(
-      'get_all_data_by_data_type', 
-      JSON.stringify({
-          data_type: 'voting__top_slogan_data'
-      }),
-      function(result, data){ // success request
-          console.log(result);
-          topSlogan = data
-          console.log(topSlogan)
-
-          getTopSlogan()
-
-      },
-      function(result, data){ 
-          console.log(result);
-          // failed request
-          // redirectToHome();
-      },
-      function(){ 
-          // connection error
-          console.log(result);
-          // redirectToHome();
-      },
-      function(status){ 
-          // request status error
-          console.log(result);
-          // redirectToHome();
-      }
-    );
-}
-
 
 function getSongList(){
     var list_length = songlist.item_list.length;
@@ -162,13 +130,6 @@ function getSongList(){
     }
 }
 
-function getTopSlogan(){
-  var top_slogan_length = topSlogan.item_list.length;
-
-  for(let i=0; i<top_slogan_length; i++){
-    $('.slide-text span').html(topSlogan.item_list[i].title)
-  }
-}
 
 getSongListData()
-getTopSloganData()
+

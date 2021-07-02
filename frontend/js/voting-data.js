@@ -2,7 +2,7 @@ var artist = [];
 var artist_img = [];
 var index = 0;
 var cover = [];
-
+var img_url = 'https://thistownneeds.online/Media/';
 
 
 function getData(){
@@ -18,7 +18,7 @@ function getData(){
 
             console.log(campaign_data)
 
-            list()
+            getList()
     
         },
         function(result, data){ 
@@ -40,7 +40,7 @@ function getData(){
 }
 
 
-function list(){
+function getList(){
 
     var list_length =  campaign_data.item_list.length;
 
@@ -51,16 +51,18 @@ function list(){
         $('.container #campaign').attr('id','campaign'+i)
         $('.container #campaign'+i+' #voting-btn').attr('id','voting-btn'+i)
 
+        // show campaign name
         $('#campaign'+i+' .big-title h1').html(campaign_data.item_list[i].campaign_name);
 
-        var item_list_length = campaign_data.item_list[i].option_list.length;
-
-        for(let j=0; j<item_list_length; j++){
+        // check how many option_data inside item_list
+        var option_data_length = campaign_data.item_list[i].option_data.length;
+        for(let j=0; j<option_data_length; j++){
             
             //clone .info-ctn
             var info_ctn_clone = $('.template .info-ctn').clone();
             info_ctn_clone.appendTo('#campaign'+i+' .item-list');
             info_ctn_clone.attr('data-info-id',''+i+j)
+            info_ctn_clone.attr('id','info-ctn-'+i+j)
 
             //clone artist image
             var artist_img = $('.template #artist-img').clone();
@@ -68,22 +70,36 @@ function list(){
             artist_img.attr('id','artist-img-'+i+j);
 
 
-            //check if voting album, default false
-            if(campaign_data.item_list[i].is_voting_album == false){
-                $('#campaign'+i+' .song-info h3').html(campaign_data.item_list[i].option_data[j].artist_name);
-            }else{
-                $('#campaign'+i+' .song-info span').html(campaign_data.item_list[i].option_data[j].artist_name);
+            var album_img_src = campaign_data.item_list[i].option_data[j].album_cover_img_url;
+            var track_img_src = campaign_data.item_list[i].option_data[j].artist_photo;
+            console.log(track_img_src)
+
+            // voting album
+            if(campaign_data.item_list[i].is_voting_album == true){
+                $('#campaign'+i+' #info-ctn-'+i+j+' .song-info h3').html('《'+campaign_data.item_list[i].option_data[j].album_name+'》');
+                $('#campaign'+i+' #info-ctn-'+i+j+' .song-info span').html(campaign_data.item_list[i].option_data[j].artist_name);
+                $('#campaign'+i+' #artist-img-'+i+j).attr('src',img_url+album_img_src)
             }
-            
+
+
+            //voting track
+            if(campaign_data.item_list[i].is_voting_album == false){
+                $('#campaign'+i+' #info-ctn-'+i+j+' .song-info h3').html(campaign_data.item_list[i].option_data[j].artist_name);
+                $('#campaign'+i+' #info-ctn-'+i+j+' .song-info span').html('《'+campaign_data.item_list[i].option_data[j].track_name+'》');
+                $('#campaign'+i+' #artist-img-'+i+j).attr('src',img_url+track_img_src)
+            }
+        
+
             //Show image when click
             $('#campaign'+i+' .info-ctn').click(function(){
                 var info_data_id = $(this).attr('data-info-id');
-                $('#artist-img-'+info_data_id).fadeIn().siblings().hide();
+                $('#artist-img-'+info_data_id).fadeIn();
+                $('#artist-img-'+info_data_id).siblings().hide();
             })
         }
 
         $('#campaign'+i+' img:not(:first)').hide();
-        $('#campaign'+i+' .song-info span').html("Hello Word")
+        // $('#campaign'+i+' .song-info span').html("Hello Word")
 
 
         //Check the voting box

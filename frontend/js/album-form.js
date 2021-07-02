@@ -4,14 +4,7 @@ $(document).ready(function(){
 });
 
 
-
 $('#coverUpload').change(function(event){
-    // var filename = e.target.files[0].name;
-    // $('.cover-name').html("<span style='font-size:16px'>"+filename+"</span><button class='delBtn'>Delete</button>");
-
-    // $('.delBtn').click(function(){
-    //     $(this).parent().find('button,span').remove();
-    // })
 
     var filename = event.target.value.split('\\')[event.target.value.split('\\').length - 1];
     if(filename == ""){
@@ -28,6 +21,7 @@ $('#coverUpload').change(function(event){
     }
 })
 
+
 var cover_file = null;
 function getBase64_cover(file, name) {
 	var reader = new FileReader();
@@ -42,7 +36,7 @@ function getBase64_cover(file, name) {
         }
 
         postXHR(
-            'upload_track',
+            'upload_voting_file',
 
             JSON.stringify(
                 cover_upload
@@ -79,14 +73,7 @@ function getBase64_cover(file, name) {
 }
 
 
-
 $('#file-input1').change(function(event){
-    // var filename = e.target.files[0].name;
-    // $(this).parent().find('.song-name').html("<span style='font-size:16px'>"+filename+"</span><button class='delBtn'>Delete</button>");
-
-    // $('.delBtn').click(function(){
-    //     $(this).parent().find('button,span').remove();
-    // })
     var filename = event.target.value.split('\\')[event.target.value.split('\\').length - 1];
     if(filename == ""){
 
@@ -101,6 +88,7 @@ $('#file-input1').change(function(event){
         getBase64_song(file, filename);
     }
 })
+
 
 var song_file = null;
 function getBase64_song(file, name) {
@@ -152,8 +140,6 @@ function getBase64_song(file, name) {
 	};
 	reader.readAsDataURL(file);
 }
-
-
 
 
 $('.required-field').blur(function(){
@@ -213,28 +199,18 @@ $('#addMoreAlbum').click(function(){
     })
 
     $('#file-input'+index).change(function(event){
-        // var filename = this.files[0].name;
-        // $(this).parent().find('.song-name').html("<span style='font-size:16px'>"+filename+"</span><button class='delBtn'>Delete</button>");
-    
-        // $('.delBtn').click(function(){
-        //     $(this).parent().find('button,span').remove();
-        // })
         var filename = event.target.value.split('\\')[event.target.value.split('\\').length - 1];
-
         if(filename == ""){
     
         }else{
             var file = this.files[0];
             $(this).parent().find('.song-name').html("<span style='font-size:16px'>"+filename+"</span><button class='delBtn'>Delete</button>");
-    
             $('.delBtn').click(function(){
                 $(this).parent().find('button,span').remove();
             })
-    
             getBase64_song(file, filename);
         }
     })
-    
     console.log(formList)
 
     index++;
@@ -279,8 +255,6 @@ $('.albumSub').click(function(){
             album_publisher: album_publisher,
             album_streaming_link: stream_link,
             album_exceutive_producer: album_exProducer,
-            // appleMusic: appleMusic,
-            // spotifyMusic: spotifyMusic,
             album_cover_img_url: cover_file,
 
             tracks:[]
@@ -311,7 +285,13 @@ $('.albumSub').click(function(){
             if($('#trackStreamLink'+i) == "Apple Music"){
                 track_streaming_link = appleSelected;
             }else{
-                track_streaming_link = spotifyMusic;
+                track_streaming_link = spotifySelected;
+            }
+
+            if($('#streamLink').val() == "Apple Music"){
+                album_streaming_link = appleMusic
+            }else{
+                album_streaming_link = spotifyMusic;
             }
 
             arrayOfInputObject.tracks.push({
@@ -339,24 +319,6 @@ $('.albumSub').click(function(){
         }
         console.log(arrayOfInputObject)
 
-        
-        var album_streaming_link;
-        if($('#streamLink').val() == "Apple Music"){
-            album_streaming_link = appleMusic
-        }else{
-            album_streaming_link = spotifyMusic;
-        }
-
-        // var album_form_obj = {
-        //     'auth_code':"",
-        //     'album_name': album_name,
-        //     'release_date': release_date,
-        //     'genre': album_genre,
-        //     'album_publisher': album_publisher,
-        //     'album_exceutive_producer': album_exProducer,
-        //     'album_cover_img_url': cover_upload,
-        //     'album_streaming_link': album_streaming_link,            
-        // }
 
         postXHR(
             'new_album', 
@@ -369,7 +331,7 @@ $('.albumSub').click(function(){
 
                 console.log(data)
                 album_form = data;
-
+                console.log(album_form)
 
                 isLoading = false;
             },
