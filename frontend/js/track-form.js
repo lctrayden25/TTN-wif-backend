@@ -290,13 +290,13 @@ $('.trackSub').click(function(){
             var lsrc = document.querySelector('#lsrc'+index).value;
             // var song_upload = document.querySelector('#file-input'+index).value;
             var track_stream_link = document.querySelector('#track-streamLink'+index).value;
-            var apple_selected = document.querySelector('#appleSelected'+index).value;
-            var spotify_selected = document.querySelector('#spotifySelected'+index).value;
+            var appleSelected = document.querySelector('#appleSelected'+index).value;
+            var spotifySelected = document.querySelector('#spotifySelected'+index).value;
 
-            if($('#track-streamLink'+index) == "Apple Music"){
-                track_streaming_link = apple_selected;
+            if($('#track-streamLink'+index).val() == "Apple Music"){
+                track_streaming_link = appleSelected;
             }else{
-                track_streaming_link = spotify_selected;
+                track_streaming_link = spotifySelected;
             }
 
             arrayOfInputObject.push({
