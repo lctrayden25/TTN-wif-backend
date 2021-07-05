@@ -74,7 +74,7 @@ function getList(){
 
 
             var album_img_src = campaign_data.item_list[i].option_data[j].album_cover_img_url;
-            var track_img_src = campaign_data.item_list[i].option_data[j].artist_photo;
+            var track_cover_src = campaign_data.item_list[i].option_data[j].tracks_cover;
 
             // voting album
             if(campaign_data.item_list[i].is_voting_album == true){
@@ -88,7 +88,7 @@ function getList(){
             if(campaign_data.item_list[i].is_voting_album == false){
                 $('#campaign'+i+' #info-ctn-'+i+j+' .song-info h3').html(campaign_data.item_list[i].option_data[j].artist_name);
                 $('#campaign'+i+' #info-ctn-'+i+j+' .song-info span').html('《'+campaign_data.item_list[i].option_data[j].track_name+'》');
-                $('#campaign'+i+' #artist-img-'+i+j).attr('src',img_url+track_img_src)
+                $('#campaign'+i+' #artist-img-'+i+j).attr('src',img_url+track_cover_src)
             }
         
 

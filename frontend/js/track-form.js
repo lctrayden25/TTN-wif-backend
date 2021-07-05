@@ -310,7 +310,7 @@ $('.trackSub').click(function(){
 
             console.log(arrayOfTrackImageUpload)
             var song = arrayOfFileUpload.find(function(element){return element.file_id == 'file-input'+index})
-            var image = arrayOfTrackImageUpload.find(function(element){return element.track_file_id == 'trackImage-upload'+index})
+            var image = arrayOfTrackImageUpload.find(function(element){return element.file_id == 'trackImage-upload'+index})
 
             arrayOfInputObject.push({
                 auth_code: to_loginObj.auth_code,
@@ -389,35 +389,35 @@ function recursive(index){
     // recursive(index -1);
     // console.log(global_array[index])
 
-    // postXHR(
-    //     'new_track', 
-    //     JSON.stringify(
-    //         global_array[index]
-    //     ),
-    //     function(result, data){ // success request
-    //         console.log(result);
-    //         // displayNews(data);
+    postXHR(
+        'new_track', 
+        JSON.stringify(
+            global_array[index]
+        ),
+        function(result, data){ // success request
+            console.log(result);
+            // displayNews(data);
 
-    //         console.log(data)
-    //         // track_form = data;
-    //         recursive(index -1)
-    //     },
-    //     function(result, data){ 
-    //         console.log(result);
-    //         // failed request
-    //         // redirectToHome();
-    //     },
-    //     function(){ 
-    //         // connection error
-    //         console.log(result);
-    //         // redirectToHome();
-    //     },
-    //     function(status){ 
-    //         // request status error
-    //         console.log(result);
-    //         // redirectToHome();
-    //     }
-    // );
+            console.log(data)
+            // track_form = data;
+            recursive(index -1)
+        },
+        function(result, data){ 
+            console.log(result);
+            // failed request
+            // redirectToHome();
+        },
+        function(){ 
+            // connection error
+            console.log(result);
+            // redirectToHome();
+        },
+        function(status){ 
+            // request status error
+            console.log(result);
+            // redirectToHome();
+        }
+    );
 
 }
 
