@@ -7,7 +7,6 @@ $(document).ready(function(){
 // Track song upload
 var arrayOfFileUpload = [];
 var file_upload = null;
-
 var song_file_id = null;
 function getBase64_songUpload(file, name) {
 	var reader = new FileReader();
@@ -87,7 +86,9 @@ $('#file-input1').change(function(event){
 
 
 // Track image upload
-var track_img_upload = null;
+var arrayOfTrackImageUpload = [];
+var track_file_id = null;
+var track_cover_upload = null;
 function getBase64_trackImageUpload(file, name) {
 	var reader = new FileReader();
 	reader.onload = function () {
@@ -111,7 +112,14 @@ function getBase64_trackImageUpload(file, name) {
                 // displayNews(data);
 
                 console.log(data)
-                track_img_upload = data;
+                track_cover_upload = data;
+
+                arrayOfTrackImageUpload.push({
+                    file_id: track_file_id,
+                    image_file: track_cover_upload
+                })
+
+                console.log(arrayOfTrackImageUpload)
             },
             function(result, data){ 
                 console.log(result);
@@ -138,6 +146,7 @@ function getBase64_trackImageUpload(file, name) {
 }
 
 $('#trackImage-upload1').change(function(event){
+    track_file_id = event.target.id;
     var filename = event.target.value.split('\\')[event.target.value.split('\\').length - 1];
     if(filename == ""){
 
@@ -219,13 +228,13 @@ $('#addMoreTrack').click(function(event){
 
     $('#file-input'+index).change(function(event){
         song_file_id = event.target.id;
+
         var filename = event.target.value.split('\\')[event.target.value.split('\\').length - 1];
         if(filename == ""){
     
         }else{
             var file = this.files[0];
             $(this).parent().find('.song-name').html("<span style='font-size:16px'>"+filename+"</span><button class='delBtn'>Delete</button>");
-    
             $('.delBtn').click(function(){
                 $(this).parent().find('button,span').remove();
             })
@@ -236,17 +245,17 @@ $('#addMoreTrack').click(function(event){
 
 
     $('#trackImage-upload'+index).change(function(event){
+        track_file_id = event.target.id;
+
         var filename = event.target.value.split('\\')[event.target.value.split('\\').length - 1];
         if(filename == ""){
     
         }else{
             var file = this.files[0];
             $(this).parent().find('.song-name').html("<span style='font-size:16px'>"+filename+"</span><button class='delBtn'>Delete</button>");
-    
             $('.delBtn').click(function(){
                 $(this).parent().find('button,span').remove();
             })
-    
             getBase64_trackImageUpload(file, filename);
         }
     })
@@ -289,7 +298,7 @@ $('.trackSub').click(function(){
             var master_engineer = document.querySelector('#masterEngineer'+index).value;
             var lsrc = document.querySelector('#lsrc'+index).value;
             // var song_upload = document.querySelector('#file-input'+index).value;
-            var track_stream_link = document.querySelector('#track-streamLink'+index).value;
+            // var track_stream_link = document.querySelector('#track-streamLink'+index).value;
             var appleSelected = document.querySelector('#appleSelected'+index).value;
             var spotifySelected = document.querySelector('#spotifySelected'+index).value;
 
@@ -299,7 +308,9 @@ $('.trackSub').click(function(){
                 track_streaming_link = spotifySelected;
             }
 
+            console.log(arrayOfTrackImageUpload)
             var song = arrayOfFileUpload.find(function(element){return element.file_id == 'file-input'+index})
+            var image = arrayOfTrackImageUpload.find(function(element){return element.track_file_id == 'trackImage-upload'+index})
 
             arrayOfInputObject.push({
                 auth_code: to_loginObj.auth_code,
@@ -325,6 +336,7 @@ $('.trackSub').click(function(){
                 lsrc: lsrc,
                 source_file_name: song.song_data,
                 track_streaming_link: track_streaming_link,
+                tracks_cover: image.image_file
             })
         }
 
@@ -362,10 +374,6 @@ $('.trackSub').click(function(){
             'lyricist_sp': lyricist_sp,
         }
 
-        console.log(track_form_obj)
-
-        alert('You have submitted the form successfully.')
-
    }
 })
 
@@ -380,35 +388,36 @@ function recursive(index){
     // console.log(global_array)
     // recursive(index -1);
     // console.log(global_array[index])
-    postXHR(
-        'new_track', 
-        JSON.stringify(
-            global_array[index]
-        ),
-        function(result, data){ // success request
-            console.log(result);
-            // displayNews(data);
 
-            console.log(data)
-            // track_form = data;
-            recursive(index -1)
-        },
-        function(result, data){ 
-            console.log(result);
-            // failed request
-            // redirectToHome();
-        },
-        function(){ 
-            // connection error
-            console.log(result);
-            // redirectToHome();
-        },
-        function(status){ 
-            // request status error
-            console.log(result);
-            // redirectToHome();
-        }
-    );
+    // postXHR(
+    //     'new_track', 
+    //     JSON.stringify(
+    //         global_array[index]
+    //     ),
+    //     function(result, data){ // success request
+    //         console.log(result);
+    //         // displayNews(data);
+
+    //         console.log(data)
+    //         // track_form = data;
+    //         recursive(index -1)
+    //     },
+    //     function(result, data){ 
+    //         console.log(result);
+    //         // failed request
+    //         // redirectToHome();
+    //     },
+    //     function(){ 
+    //         // connection error
+    //         console.log(result);
+    //         // redirectToHome();
+    //     },
+    //     function(status){ 
+    //         // request status error
+    //         console.log(result);
+    //         // redirectToHome();
+    //     }
+    // );
 
 }
 

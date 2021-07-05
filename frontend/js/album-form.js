@@ -3,7 +3,7 @@ $(document).ready(function(){
     to_loginObj = JSON.parse(login_data);
 });
 
-
+//cover upload
 $('#coverUpload').change(function(event){
 
     var filename = event.target.value.split('\\')[event.target.value.split('\\').length - 1];
@@ -73,7 +73,13 @@ function getBase64_cover(file, name) {
 }
 
 
+//song upload
+var arrayOfFileUpload = [];
+var song_file = null;
+var song_file_id = null;
 $('#file-input1').change(function(event){
+    song_file_id = event.target.id;
+
     var filename = event.target.value.split('\\')[event.target.value.split('\\').length - 1];
     if(filename == ""){
 
@@ -90,7 +96,6 @@ $('#file-input1').change(function(event){
 })
 
 
-var song_file = null;
 function getBase64_song(file, name) {
 	var reader = new FileReader();
 	reader.onload = function () {
@@ -101,7 +106,6 @@ function getBase64_song(file, name) {
             // file_name: null,
             upload_file_type: file64_type,
             upload_data: file64,
-            
         }
 
         postXHR(
@@ -116,6 +120,13 @@ function getBase64_song(file, name) {
 
                 console.log(data)
                 song_file = data;
+
+                arrayOfFileUpload.push({
+                    file_id: song_file_id,
+                    song_data: song_file
+                })
+
+                console.log(arrayOfFileUpload)
             },
             function(result, data){ 
                 console.log(result);
@@ -199,6 +210,8 @@ $('#addMoreAlbum').click(function(){
     })
 
     $('#file-input'+index).change(function(event){
+        song_file_id = event.target.id;
+
         var filename = event.target.value.split('\\')[event.target.value.split('\\').length - 1];
         if(filename == ""){
     
@@ -239,7 +252,7 @@ $('.albumSub').click(function(){
         var appleMusic = document.querySelector('#appleMusic').value;
         var spotifyMusic = document.querySelector('#spotifyMusic').value;
         var album_exProducer = document.querySelector('#albumExProducer').value;
-        var cover_upload = document.querySelector('#coverUpload').value;
+        // var cover_upload = document.querySelector('#coverUpload').value;
 
         if(stream_link == "Apple Music"){
             stream_link = appleMusic
@@ -280,7 +293,7 @@ $('.albumSub').click(function(){
             var track_streaming_link = document.querySelector('trackStreamLink'+i);
             var appleSelected = document.querySelector('#appleSelected'+i).value;
             var spotifySelected = document.querySelector('#spotifySelected'+i).value;
-            var song_upload = document.querySelector('#file-input'+i).value;
+            // var song_upload = document.querySelector('#file-input'+i).value;
 
             if($('#trackStreamLink'+i) == "Apple Music"){
                 track_streaming_link = appleSelected;
@@ -294,6 +307,7 @@ $('.albumSub').click(function(){
                 album_streaming_link = spotifyMusic;
             }
 
+            var song = arrayOfFileUpload.find(function(element){return element.file_id == 'file-input'+i})
             arrayOfInputObject.tracks.push({
                 track_name: track_name,
                 track_duration: track_duration,
@@ -313,12 +327,10 @@ $('.albumSub').click(function(){
                 track_streaming_link: track_streaming_link,
                 appleSelected: appleSelected,
                 spotifySelected: spotifySelected,
-                source_file_name: song_file
+                source_file_name: song.song_data
             })
 
         }
-        console.log(arrayOfInputObject)
-
 
         postXHR(
             'new_album', 
@@ -351,8 +363,7 @@ $('.albumSub').click(function(){
                 // redirectToHome();
             }
         );
-    
-        alert('You have submitted the form successfully.')
+
     }
 });
 
