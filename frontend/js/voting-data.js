@@ -76,6 +76,7 @@ function getList(){
             var album_img_src = campaign_data.item_list[i].option_data[j].album_cover_img_url;
             var track_cover_src = campaign_data.item_list[i].option_data[j].tracks_cover;
 
+            
             // voting album
             if(campaign_data.item_list[i].is_voting_album == true){
                 $('#campaign'+i+' #info-ctn-'+i+j+' .song-info h3').html('《'+campaign_data.item_list[i].option_data[j].album_name+'》');
