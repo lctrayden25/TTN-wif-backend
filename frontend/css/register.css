@@ -21,12 +21,14 @@
 .content-container{
     position: relative;
     min-height: 86vh;
+    max-width: 100%;
+    width: 100%;
+    margin: 0 auto;
 }
 
 .login-ctn{
-    max-width: 800px;
-    margin:0 auto;
-    
+    width: 55%;
+    margin: 0 auto;
 }
 
 .login-text{
@@ -66,12 +68,12 @@
 }
 
 .input-field{
-    /* width: 50%; */
+    width: 45%;
     margin-top:40px;
 }
 
 .input-field input{
-    width:352px;
+    width:100% !important;
     height:37px;
     margin-top: 8px;
     margin-bottom: 5px;
@@ -128,15 +130,20 @@
     text-decoration: underline;
 }
 
-@media(max-width: 769px){
+@media(max-width: 796px){
+    .login-ctn{
+        width: 100%;
+    }
+
     .input-field-ctn{
         flex-wrap: wrap;
         justify-content: center;
         flex-direction: column;
         align-items: center;
+        gap: 0;
     }
 
-    .right-field{
-        padding-left: 0;
+    .input-field{
+        width: 80%;
     }
 }
