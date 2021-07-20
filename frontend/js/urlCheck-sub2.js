@@ -22,7 +22,7 @@ for(let i=0; i<spotify.length; i++){
     var field = this;
 
     setTimeout(function(){
-      if(field.value.indexOf('https://music.spotify.com/') !== 0){
+      if(field.value.indexOf('https://open.spotify.com/track/') !== 0 || field.value.indexOf('https://open.spotify.com/album/') !== 0){
           field.value = oldVal;
       }
     })

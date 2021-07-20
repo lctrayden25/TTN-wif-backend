@@ -73,10 +73,10 @@ function getBase64(file, name) {
 $('#file-input').change(function(event){
     var filesize = this.files[0].size/1024/1024;
     if(filesize > 2){
-        $('.file-remark').css('color','#ff0000')
+        $(this).parent().find('.file-remark').css('color','#ff0000')
         return false;
     }else{
-        $('.file-remark').css('color','#000')
+        $(this).parent().find('.file-remark').css('color','#000')
     }
 
     var filename = event.target.value.split('\\')[event.target.value.split('\\').length - 1];

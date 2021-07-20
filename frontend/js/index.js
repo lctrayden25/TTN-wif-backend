@@ -58,7 +58,7 @@ $('.vote-link .submit-form').click(function(){
     if(sessionStorage.length == 0){
         $('a').attr("href","login.html")
     }else{
-
+        
         if( 'user_data' in sessionStorage){
             $('.member-ctn .submit').empty();
 

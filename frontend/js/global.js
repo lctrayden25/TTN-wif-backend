@@ -1,4 +1,7 @@
 $(document).ready(function(){
+    login_data = sessionStorage.getItem('user_data');
+    to_loginObj = JSON.parse(login_data);
+
     if( 'user_data' in sessionStorage){
         $('.member-ctn .submit').empty().html('<button id="logout">Log Out</button>');
         $('.menu-login').empty().html('<button id="logout">Log Out</button>');
@@ -8,7 +11,28 @@ $(document).ready(function(){
         sessionStorage.removeItem('user_data');
         location.replace('index.html')
     })
-  })
+
+    $('.toSubmit').click(function(){
+        if(!('user_data' in sessionStorage)){
+            $(this).attr('href','login.html')
+        }else{
+            // $(this).attr('href','artist-form.html');
+            if(to_loginObj.isArtist == false){
+                $(this).attr('href','artist-form.html');
+            }else{
+                $(this).attr('href','campaignSubmission.html')
+            }
+        }
+    })
+
+    $('.toVote').click(function(){
+        if(!('user_data' in sessionStorage)){
+            $(this).attr('href','login.html'); 
+        }else{
+            $(this).attr('href','voting.html'); 
+        }
+    })
+})
 
 var isLoading= false;
 

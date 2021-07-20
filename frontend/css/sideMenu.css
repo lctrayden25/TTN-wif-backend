@@ -15,12 +15,17 @@ cursor: pointer;
   left: 0;
   background-color: #fff;
   overflow-x: hidden;
-  transition: 0.5s;
+  transition: all 0.5s ease;
   padding-top: 60px;
 }
 
 .sidenav.active{
-  width: 550px;
+  width: 350px;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
 }
 
 .sidenav a {
@@ -46,6 +51,7 @@ cursor: pointer;
 .isDesktop .sidenav .menu-login{
   display: flex;
   align-items: baseline;
+  justify-content: center;
 }
 
 .isDesktop .sidenav .menu-login span{

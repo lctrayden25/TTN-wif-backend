@@ -65,11 +65,19 @@ function getBase64_songUpload(file, name) {
 	reader.readAsDataURL(file);
 }
 
-
+//song upload
 $('#file-input1').change(function(event){
     song_file_id = event.target.id;
-
     var filename = event.target.value.split('\\')[event.target.value.split('\\').length - 1];
+    
+    var filesize = this.files[0].size/1024/1024;
+    if(filesize > 15){
+        $(this).parent().find('.file-remark').css('color','#ff0000')
+        return false;
+    }else{
+        $(this).parent().find('.file-remark').css('color','#000')
+    }
+
     if(filename == ""){
 
     }else{
@@ -148,6 +156,15 @@ function getBase64_trackImageUpload(file, name) {
 $('#trackImage-upload1').change(function(event){
     track_file_id = event.target.id;
     var filename = event.target.value.split('\\')[event.target.value.split('\\').length - 1];
+    
+    var filesize = this.files[0].size/1024/1024;
+    if(filesize > 0){
+        $('.file-remark').css('color','#ff0000')
+        return false;
+    }else{
+        $('.file-remark').css('color','#000')
+    }
+
     if(filename == ""){
 
     }else{

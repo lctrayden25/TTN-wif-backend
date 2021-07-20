@@ -13,6 +13,7 @@
         <link rel="stylesheet" href="css/sideMenu.css">
         <link rel="stylesheet" href="css/campaignSub-1.css">
         <link rel="stylesheet" href="css/campaignSub-2.css">
+        <link rel="stylesheet" href="css/pop-up-terms.css">
         <link rel="stylesheet" type="text/css" href="css/jquery-ui.min.css">              
 
     </head>
@@ -27,10 +28,13 @@
                 </div>
                 <div class='sidenav' id="mySidenav">
                     <a href="javascript:void(0)" class="closebtn" >&times;</a>
-                   <div style="padding:170px 0 0 110px">
+                    <div>
                         <div class="menu-login"><a href="login.html">登入</a><span>/</span><a href="register.html">註冊</a></div>
-                        <a href="campaignSubmission.html">遞交作品</a>
-                        <a href="#">投票</a>
+                        <a href="campaignSubmission.html" class="toSubmit">遞交作品</a>
+                        <a href="voting.html" class="toVote">投票</a>
+                        <a href="#">Tone Awards投票</a>
+                        <a href="#">趣味投票</a>
+                        <a href="#">評委投票頁</a>
                    </div>
                 </div>
             </div>    
@@ -68,8 +72,8 @@
                 <div class='sidenav' id="mobileSidenav">
                     <!-- <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a> -->
                     <div class="menu-login"><a href="login.html">登入</a><span>/</span><a href="register.html">註冊</a></div>
-                    <a href="campaignSubmission.html">遞交作品</a>
-                    <a href="#">投票</a>
+                    <a href="campaignSubmission.html" class="toSubmit">遞交作品</a>
+                    <a href="voting.html" class="toVote">投票</a>
                 </div>
             </div>    
         </div>
@@ -185,6 +189,7 @@
                                     <label for="lyricist-sp">Lyricist.Sub Publisher</label><br>
                                     <input type="text" class="input-field lyricist-sp" id="lyricist-sp1">
                                 </div>
+
                             </div>
             
                             <div class="input-wrapper">
@@ -220,7 +225,7 @@
                                     <span class="error"></span>
                                 </div>
                                 <div class="input-field">
-                                    <label for="lsic">Lsrc*</label><br>
+                                    <label for="lsic">Isrc*</label><br>
                                     <input type="text" class="input-field lsrc required-field" id="lsrc1" >
                                     <span class="error"></span>
                                 </div>
@@ -234,7 +239,7 @@
                                         <option value="Spotify">Spotify</option>
                                     </select>
                                     <input type="url" placeholder="https://music.apple.com/" value="https://music.apple.com/" class="appleSelected required-field" id="appleSelected1" >
-                                    <input type="url"  placeholder="https://music.spotify.com/" value="https://music.spotify.com/" class="spotifySelected required-field" id="spotifySelected1" style="display:none" >
+                                    <input type="url"  placeholder="https://open.spotify.com/track/" value="https://open.spotify.com/track/" class="spotifySelected required-field" id="spotifySelected1" style="display:none" >
                                     <span class="error"></span>
                                 </div>
                                 <div class="input-field">
@@ -243,6 +248,7 @@
                                         <label for="file-input1" class="custom-upload-btn songUpload-btn"><span>UPLOAD<img src="img/001-upload-button.svg"></span></label>
                                         <input type="file" id="file-input1" class="file-input required-field songUpload">
                                         <div class="song-name"></div>
+                                        <span class="file-remark">Maximum file size: 15MB (mp3 only)</span>
                                         <span class="error"></span>
                                     </div>
                                 </div>
@@ -255,6 +261,7 @@
                                         <label for="trackImage-upload1" class="custom-upload-btn trackImageUpload-btn"><span>UPLOAD<img src="img/001-upload-button.svg"></span></label>
                                         <input type="file" id="trackImage-upload1" class="file-input required-field trackImageUpload">
                                         <div class="song-name"></div>
+                                        <span class="file-remark">Maximum file size: 2MB (jpg/jpeg/png only)</span>
                                         <span class="error"></span>
                                     </div>
                                 </div>
@@ -275,6 +282,10 @@
                     <div class="login-btn">
                         <button type="submit" id="submitBtn" class="loginBtn trackSub">Submit</button>
                     </div>
+
+                    <!-- <div class="login-btn">
+                        <button id="openModal" class="submit-before">Submit</button>
+                    </div> -->
                 </div>
 
 
@@ -316,6 +327,8 @@
             </div>
         </footer>
 
+
+        <!-- clone template -->
         <div class="form-template" style="display: none;">
             <div class="form-wrapper" id="track-form">
                 <div class="section-num">
@@ -326,10 +339,12 @@
                     <div class="input-field">
                         <label for="trackName">Track Name*</label><br>
                         <input type="text" class="input-field trackName required-field" id="trackName">
+                        <span class="error"></span>
                     </div>
                     <div class="input-field">
                         <label for="releaseDate">Release Date*</label><br>
                         <input type="date" id="releaseDate" class="releaseDate required-field" >
+                        <span class="error"></span>
                     </div>
                 </div>
 
@@ -337,6 +352,7 @@
                     <div class="input-field">
                         <label for="trackDuration">Track Duration*</label><br>
                         <input type="text" class="input-field trackDuration required-field" id="trackDuration" placeholder="MM:SS" >
+                        <span class="error"></span>
                     </div>
                     <div class="input-field">
                         <label for="trackGenre">Genre*</label><br>
@@ -346,6 +362,7 @@
                             <option value="Hip hop">Hip hop</option>
                             <option value="Jazz">Jazz</option>
                         </select>
+                        <span class="error"></span>
                     </div>
                 </div>
 
@@ -364,10 +381,12 @@
                     <div class="input-field">
                         <label for="trackPulisher">Track Pulisher*</label><br>
                         <input type="text" class="input-field trackPublisher required-field" id="trackPublisher" >
+                        <span class="error"></span>
                     </div>
                     <div class="input-field">
                         <label for="featureArtist">Featuring Artist(s)*</label><br>
                         <input type="text" class="input-field featureArtist required-field" id="featureArtist" >
+                        <span class="error"></span>
                     </div>
                 </div>
 
@@ -375,6 +394,7 @@
                     <div class="input-field">
                         <label for="composer">Composer*</label><br>
                         <input type="text" class="input-field composer required-field" id="composer" >
+                        <span class="error"></span>
                     </div>
                 </div>
 
@@ -393,6 +413,7 @@
                     <div class="input-field">
                         <label for="lyricist">Lyricist*</label><br>
                         <input type="text" class="input-field lyricist required-field" id="lyricist" >
+                        <span class="error"></span>
                     </div>
                 </div>
 
@@ -411,10 +432,12 @@
                     <div class="input-field">
                         <label for="arranger">Arranger*</label><br>
                         <input type="text" class="input-field arranger required-field" id="arranger" >
+                        <span class="error"></span>
                     </div>
                     <div class="input-field">
                         <label for="producer">Producer*</label><br>
                         <input type="text" class="input-field producer required-field" id="producer" >
+                        <span class="error"></span>
                     </div>
                 </div>
 
@@ -422,10 +445,12 @@
                     <div class="input-field">
                         <label for="recordEngineer">Recording Engineer*</label><br>
                         <input type="text" class="input-field recordEngineer required-field" id="recordEngineer" >
+                        <span class="error"></span>
                     </div>
                     <div class="input-field">
                         <label for="mixEngineer">Mixing Engineer*</label><br>
                         <input type="text" class="input-field mixEngineer required-field" id="mixEngineer" >
+                        <span class="error"></span>
                     </div>
                 </div>
 
@@ -433,10 +458,12 @@
                     <div class="input-field">
                         <label for="masterEngineer">Mastering Engineer*</label><br>
                         <input type="text" class="input-field masterEngineer required-field" id="masterEngineer" >
+                        <span class="error"></span>
                     </div>
                     <div class="input-field">
-                        <label for="lsic">Lsrc*</label><br>
+                        <label for="lsic">Isrc*</label><br>
                         <input type="text" class="input-field lsrc required-field" id="lsrc" >
+                        <span class="error"></span>
                     </div>
                 </div>
 
@@ -448,7 +475,7 @@
                             <option value="Spotify">Spotify</option>
                         </select>
                         <input type="url" placeholder="https://music.apple.com/" value="https://music.apple.com/" class="appleSelected required-field" id="appleSelected" >
-                        <input type="url"  placeholder="https://music.spotify.com/" value="https://music.spotify.com/" class="spotifySelected required-field" id="spotifySelected" style="display:none" >
+                        <input type="url"  placeholder="https://open.spotify.com/track/" value="https://music.spotify.com/track/" class="spotifySelected required-field" id="spotifySelected" style="display:none" >
                     </div>
                     <div class="input-field">
                         <p style="font-family: 'Josefin Sans', sans-serif; letter-spacing: 4px;">Upload Song*</p>
@@ -468,6 +495,7 @@
                             <label for="trackImage-upload" class="custom-upload-btn trackImageUpload-btn"><span>UPLOAD<img src="img/001-upload-button.svg"></span></label>
                             <input type="file" id="trackImage-upload" class="file-input required-field trackImageUpload">
                             <div class="song-name"></div>
+                            <span class="file-remark">Maximum file size: 2MB (jpg/jpeg/png only)</span>
                             <span class="error"></span>
                         </div>
                     </div>
@@ -475,6 +503,29 @@
                 <hr>
             </div>
         </div>
+        <!-- clone template -->
+
+
+        <!-- <div class="pop-up modal" id="myModal">
+            <div class="main-content">
+                <span id="close">&times;</span>
+                <h3>Terms and Conditions</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas id accusamus aperiam recusandae necessitatibus? Quod veniam nobis aliquam accusamus. Fuga itaque quasi ducimus quaerat est fugiat repudiandae cum tenetur illo!</p>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Harum aspernatur dolorum minus sit in, quae amet nisi, omnis quidem cumque dignissimos laudantium magnam quam esse a. Dolor in deserunt eveniet?</p>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cupiditate soluta doloremque eius asperiores voluptas, debitis ad accusamus labore deserunt nemo excepturi commodi omnis veritatis non veniam magnam dolore aut quia!</p>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cupiditate soluta doloremque eius asperiores voluptas, debitis ad accusamus labore deserunt nemo excepturi commodi omnis veritatis non veniam magnam dolore aut quia!</p>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cupiditate soluta doloremque eius asperiores voluptas, debitis ad accusamus labore deserunt nemo excepturi commodi omnis veritatis non veniam magnam dolore aut quia!</p>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cupiditate soluta doloremque eius asperiores voluptas, debitis ad accusamus labore deserunt nemo excepturi commodi omnis veritatis non veniam magnam dolore aut quia!</p>
+                <div class="checkTerm">
+                    <input type="checkbox" id="termsCheck" onclick="termCheck(this)">
+                    <label for="termsCheck">I read and agree to the <a href="#">terms and conditions</a>.</label>
+                </div>
+                
+                <div class="login-btn">
+                    <button type="submit" id="submitBtn" class="loginBtn trackSub">Submit</button>
+                </div>
+            </div>
+        </div> -->
         
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
@@ -486,5 +537,6 @@
         <script src="js/urlCheck-sub2.js"></script>
         <script src="js/global.js"></script>
         <script src="js/track-form.js"></script>
+        <script src="js/pop-up-terms.js"></script>
     </body>
 </html>

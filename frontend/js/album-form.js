@@ -1,12 +1,21 @@
 $(document).ready(function(){
-    login_data = sessionStorage.getItem('user_data');
-    to_loginObj = JSON.parse(login_data);
+    // login_data = sessionStorage.getItem('user_data');
+    // to_loginObj = JSON.parse(login_data);
 });
 
 //cover upload
 $('#coverUpload').change(function(event){
 
     var filename = event.target.value.split('\\')[event.target.value.split('\\').length - 1];
+    var filesize = this.files[0].size/1024/1024;
+
+    if(filesize > 2){
+        $(this).parent().find('.file-remark').css('color','#ff0000')
+        return false;
+    }else{
+        $(this).parent().find('.file-remark').css('color','#000')
+    }
+
     if(filename == ""){
 
     }else{
@@ -79,8 +88,17 @@ var song_file = null;
 var song_file_id = null;
 $('#file-input1').change(function(event){
     song_file_id = event.target.id;
-
     var filename = event.target.value.split('\\')[event.target.value.split('\\').length - 1];
+
+    var filesize = this.files[0].size/1024/1024;
+    if(filesize > 2){
+        $(this).parent().find('.file-remark').css('color','#ff0000')
+        return false;
+    }else{
+        $(this).parent().find('.file-remark').css('color','#000')
+    }
+
+
     if(filename == ""){
 
     }else{
