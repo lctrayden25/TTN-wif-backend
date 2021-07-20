@@ -16,12 +16,12 @@ $(document).ready(function(){
         if(!('user_data' in sessionStorage)){
             $(this).attr('href','login.html')
         }else{
-            // $(this).attr('href','artist-form.html');
             if(to_loginObj.isArtist == false){
                 $(this).attr('href','artist-form.html');
             }else{
                 $(this).attr('href','campaignSubmission.html')
             }
+            // $(this).attr('href','artist-form.html') 
         }
     })
 

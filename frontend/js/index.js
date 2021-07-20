@@ -68,6 +68,7 @@ $('.vote-link .submit-form').click(function(){
               location.replace('campaignSubmission.html')
             }
         }
+        // location.replace('artist-form.html')
     }
 })
 
