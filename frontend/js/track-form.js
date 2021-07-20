@@ -158,7 +158,7 @@ $('#trackImage-upload1').change(function(event){
     var filename = event.target.value.split('\\')[event.target.value.split('\\').length - 1];
     
     var filesize = this.files[0].size/1024/1024;
-    if(filesize > 0){
+    if(filesize > 2){
         $('.file-remark').css('color','#ff0000')
         return false;
     }else{
@@ -280,16 +280,25 @@ $('#addMoreTrack').click(function(event){
     index++
 })
 
+
+// $('.submit-before').click(function(){
+//     var required = $('.required-field').val();
+//     if(required == ""){
+//         $('.required-field').css('border','1px solid #ff0000');
+//         $('.error').html("Please enter valid information");
+//         return false;
+//     }
+// })
+
 var global_array = null;
 var form_index = 0;
 $('.trackSub').click(function(){
    if(!isLoading){
-        var required = $('.required-field').val();
-        if(required == ""){
-            $('.required-field').css('border','1px solid #ff0000');
-            $('.error').html("Please enter valid information");
-            // return false;
-        }
+        // var required = $('.required-field').val();
+        // if(required == ""){
+        //     $('.required-field').css('border','1px solid #ff0000');
+        //     $('.error').html("Please enter valid information");
+        // }
 
         var lengthOfForm = $('.trackForm .form-wrapper').length;
         var arrayOfInputObject = [];
@@ -391,6 +400,7 @@ $('.trackSub').click(function(){
             'lyricist_sp': lyricist_sp,
         }
 
+        $('.trackSub').html('Submitted');
    }
 })
 
@@ -417,7 +427,8 @@ function recursive(index){
 
             console.log(data)
             // track_form = data;
-            recursive(index -1)
+            recursive(index -1);
+            // $('.trackSub').html('Submitted');
         },
         function(result, data){ 
             console.log(result);

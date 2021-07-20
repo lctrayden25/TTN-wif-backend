@@ -13,7 +13,8 @@
         <link rel="stylesheet" href="css/sideMenu.css">
         <link rel="stylesheet" href="css/campaignSub-1.css">
         <link rel="stylesheet" href="css/campaignSub-2.css">
-        <link rel="stylesheet" type="text/css" href="css/jquery-ui.min.css">              
+        <link rel="stylesheet" type="text/css" href="css/jquery-ui.min.css">    
+        <link rel="stylesheet" href="css/pop-up-terms.css">              
 
     </head>
     <body>
@@ -73,6 +74,9 @@
                     <div class="menu-login"><a href="login.html">登入</a><span>/</span><a href="register.html">註冊</a></div>
                     <a href="campaignSubmission.html" class="toSubmit">遞交作品</a>
                     <a href="voting.html" class="toVote">投票</a>
+                    <a href="#">Tone Awards投票</a>
+                    <a href="#">趣味投票</a>
+                    <a href="#">評委投票頁</a>
                 </div>
             </div>    
         </div>
@@ -270,7 +274,7 @@
                                     <p style="font-family: 'Josefin Sans', sans-serif; letter-spacing: 4px;">Upload Song*</p>
                                     <div class="file-btn-ctn">
                                         <label for="file-input1" class="custom-upload-btn required-field"><span>UPLOAD<img src="img/001-upload-button.svg"></span></label>
-                                        <input type="file" id="file-input1" class="file-input songUpload" >
+                                        <input type="file" id="file-input1" class="file-input songUpload" accept="audio/*">
                                         <div class="song-name"></div>
                                         <span class="file-remark">Maximum file size: 15MB (mp3 only)</span>
                                         <span class="error"></span>
@@ -286,13 +290,17 @@
                         <button id="addMoreAlbum" class="addMoreBtn">ADD MORE TRACK</button>
                     </div>
 
-                    <div class="checkTerm">
+                    <!-- <div class="checkTerm">
                         <input type="checkbox" id="termsCheck" onclick="termCheck(this)">
                         <label for="termsCheck">I read and agree to the <a href="#" target="_blank">terms and conditions</a>.</label>
-                    </div>
+                    </div> -->
 
                     <div class="login-btn">
-                        <button id="submitBtn" class="loginBtn albumSub">Submit</button>
+                        <button id="openModal" class="submit-before">Submit</button>
+                        <span class="error-msg" ></span>
+                    </div>
+                    <div class="login-btn">
+                        <button id="submitBtn" class="loginBtn albumSub" style="display: none">Submit</button>
                     </div>
                 </div>
 
@@ -463,6 +471,30 @@
                 
             </div>
         </div>
+        <!-- form template -->
+
+        <div class="pop-up modal" id="myModal">
+            <div class="main-content">
+               <div class="myModal-content">
+                    <span id="close">&times;</span>
+                    <h3>Terms and Conditions</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas id accusamus aperiam recusandae necessitatibus? Quod veniam nobis aliquam accusamus. Fuga itaque quasi ducimus quaerat est fugiat repudiandae cum tenetur illo!</p>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Harum aspernatur dolorum minus sit in, quae amet nisi, omnis quidem cumque dignissimos laudantium magnam quam esse a. Dolor in deserunt eveniet?</p>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cupiditate soluta doloremque eius asperiores voluptas, debitis ad accusamus labore deserunt nemo excepturi commodi omnis veritatis non veniam magnam dolore aut quia!</p>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cupiditate soluta doloremque eius asperiores voluptas, debitis ad accusamus labore deserunt nemo excepturi commodi omnis veritatis non veniam magnam dolore aut quia!</p>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cupiditate soluta doloremque eius asperiores voluptas, debitis ad accusamus labore deserunt nemo excepturi commodi omnis veritatis non veniam magnam dolore aut quia!</p>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cupiditate soluta doloremque eius asperiores voluptas, debitis ad accusamus labore deserunt nemo excepturi commodi omnis veritatis non veniam magnam dolore aut quia!</p>
+                    <div class="checkTerm">
+                        <input type="checkbox" id="termsCheck" onclick="termCheck(this)">
+                        <label for="termsCheck">I read and agree to the <a href="#">terms and conditions</a>.</label>
+                    </div>
+                
+               </div>
+            </div>
+            <div class="summary">
+
+            </div>
+        </div>
          
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -475,5 +507,6 @@
         <script src="js/urlCheck-sub2.js"></script>
         <script src="js/global.js"></script>
         <script src="js/album-form.js"></script>
+        <script src="js/pop-up-terms.js"></script>
     </body>
 </html>

@@ -36,6 +36,10 @@ function termCheck(checkbox){
     }else{
         submitBtn.disabled = false;
         submitBtn.style.background = "#000"
+        
+        setInterval(function(){
+            $('#myModal').css('display','none');
+        },1500)
     }
 }
 

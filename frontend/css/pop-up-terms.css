@@ -1,4 +1,10 @@
-
+.error-msg{
+    display:block;
+    color: #ff0000;
+    margin-top: 20px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 20px;
+}
 
 .modal {
   display: none; /* Hidden by default */
@@ -28,9 +34,10 @@
   width: 35%;
   margin: 0 auto;
   max-width: 100%;
-  padding: 30px;
+  padding: 40px 35px;
   overflow-y: auto;
   max-height: 600px;
+  border-radius: 10px;
 }
 
 .main-content p, .main-content h3{
@@ -39,6 +46,7 @@
 
 .main-content h3{
   text-align: center;
+  margin-bottom: 30px;
 }
 
 /* The Close Button */
@@ -47,4 +55,8 @@
   float: right;
   font-size: 28px;
   font-weight: bold;
+}
+
+#close:hover{
+  cursor: pointer;
 }

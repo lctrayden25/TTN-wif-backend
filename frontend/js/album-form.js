@@ -91,7 +91,7 @@ $('#file-input1').change(function(event){
     var filename = event.target.value.split('\\')[event.target.value.split('\\').length - 1];
 
     var filesize = this.files[0].size/1024/1024;
-    if(filesize > 2){
+    if(filesize > 15){
         $(this).parent().find('.file-remark').css('color','#ff0000')
         return false;
     }else{
@@ -251,12 +251,12 @@ $('#addMoreAlbum').click(function(){
 $('.albumSub').click(function(){
     if(!isLoading){
         
-        var required = $('.required-field').val();
-        if(required == ""){
-            $('.required-field').css('border','1px solid #ff4d00');
-            $('.error').html("Please enter valid information");
-            return false;
-        }
+        // var required = $('.required-field').val();
+        // if(required == ""){
+        //     $('.required-field').css('border','1px solid #ff4d00');
+        //     $('.error').html("Please enter valid information");
+        //     return false;
+        // }
 
 
         var lengthOfForm = $('.albumForm .inner-form-wrapper').length;
@@ -363,6 +363,8 @@ $('.albumSub').click(function(){
                 album_form = data;
                 console.log(album_form)
 
+                // $('albumSub').html('Submitted');
+
                 isLoading = false;
             },
             function(result, data){ 
@@ -381,6 +383,8 @@ $('.albumSub').click(function(){
                 // redirectToHome();
             }
         );
+
+        $('.albumSub').html('Submitted');
 
     }
 });
