@@ -54,4 +54,6 @@ function topFunction(){
   })
 }
 
-
+$('#mySidenav').click(function(){
+  $('.toggle').removeClass('active');
+})
