@@ -14,7 +14,8 @@
         <link rel="stylesheet" href="css/campaignSub-1.css">
         <link rel="stylesheet" href="css/campaignSub-2.css">
         <link rel="stylesheet" href="css/pop-up-terms.css">
-        <link rel="stylesheet" type="text/css" href="css/jquery-ui.min.css">              
+        <link rel="stylesheet" type="text/css" href="css/jquery-ui.min.css">           
+        <link rel="stylesheet" href="css/dropdown.css">                
 
     </head>
     <body>
@@ -29,12 +30,25 @@
                 <div class='sidenav' id="mySidenav">
                     <a href="javascript:void(0)" class="closebtn" >&times;</a>
                     <div>
-                        <div class="menu-login"><a href="login.html">登入</a><span>/</span><a href="register.html">註冊</a></div>
+                        <!-- <div class="menu-login"><a href="login.html">登入</a><span>/</span><a href="register.html">註冊</a></div>
                         <a href="campaignSubmission.html" class="toSubmit">遞交作品</a>
                         <a href="voting.html" class="toVote">投票</a>
                         <a href="#">Tone Awards投票</a>
                         <a href="#">趣味投票</a>
-                        <a href="#">評委投票頁</a>
+                        <a href="#">評委投票頁</a> -->
+
+                        <ul>
+                            <li><div class="menu-login"><a href="login.html">登入</a><span>/</span><a href="register.html">註冊</a></div></li>
+                            <li><a href="campaignSubmission.html" class="toSubmit">遞交作品</a></li>
+                            <li><a href="voting.html" class="toVote">投票</a></li>
+                            <li>
+                                <ul class="sub-link">
+                                    <li><a href="#">Tone Awards投票</a></li>
+                                    <li><a href="#">趣味投票</a></li>
+                                    <li><a href="#">評委投票頁</a></li>
+                                </ul>
+                            </li>
+                        </ul>
                    </div>
                 </div>
             </div>    
@@ -67,12 +81,26 @@
                 </div>
 
                 <div class='sidenav' id="mobileSidenav">
-                    <div class="menu-login"><a href="login.html">登入</a><span>/</span><a href="register.html">註冊</a></div>
+                    <!-- <div class="menu-login"><a href="login.html">登入</a><span>/</span><a href="register.html">註冊</a></div>
                     <a href="campaignSubmission.html" class="toSubmit">遞交作品</a>
                     <a href="voting.html" class="toVote">投票</a>
                     <a href="#">Tone Awards投票</a>
                     <a href="#">趣味投票</a>
-                    <a href="#">評委投票頁</a>
+                    <a href="#">評委投票頁</a> -->
+
+                    <ul>
+                        <li><div class="menu-login"><a href="login.html">登入</a><span>/</span><a href="register.html">註冊</a></div></li>
+                        <li><a href="campaignSubmission.html" class="toSubmit">遞交作品</a></li>
+                        <li><a href="voting.html" class="toVote">投票</a></li>
+                        <li>
+                            <ul class="sub-link">
+                                <li><a href="#">Tone Awards投票</a></li>
+                                <li><a href="#">趣味投票</a></li>
+                                <li><a href="#">評委投票頁</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+
                 </div>
             </div>    
         </div>
@@ -111,8 +139,36 @@
                             <div class="input-wrapper">
                                 <div class="input-field">
                                     <label for="trackDuration">Track Duration*</label><br>
-                                    <input type="text" class="input-field trackDuration required-field" id="trackDuration1" placeholder="MM:SS" >
-                                    <span class="error"></span>
+                                    <!-- <input type="text" class="input-field trackDuration required-field" id="trackDuration1" placeholder="MM:SS" >
+                                    <span class="error"></span> -->
+
+                                    <!-- Duration picker -->
+                                    <div class='main' id="main-dropdown">
+                                        <div class="dropdown-btn">
+                                            <input type="text" id="show-btn-input" class="show-dropdown" data-duration="" value="" placeholder="MM:SS" disabled>
+                                            <button id="btn" class="display-dropdown"></button>
+                                            <span class="error"></span>
+                                        </div>
+                                        <div class="dropdown-ctn" style="display: none;">
+                                           <div class="dropdown-field">
+                                                <div class="dropdown minutes">
+                                                    <button id="dropdown-mins" class="duration-dropdown drop-btn">MM</button>
+                                                    <div class="mins-ctn" id="mins-ctn">
+                                                    </div>
+                                                </div>
+                                                <span class="time-dot">:</span>
+                                                <div class="dropdown seconds">
+                                                    <button id="dropdown-seconds" class="duration-dropdown drop-btn">SS</button>
+                                                    <div class="seconds-ctn" id="seconds-ctn">
+                                                    </div>
+                                                </div>
+                                                <button class="dropdown-confirm drop-btn" id="dropdown-confirm">Confirm</button>
+                                           </div>
+                                        </div>
+                                    </div>
+                                    <!-- Duration picker -->
+
+
                                 </div>
                                 <div class="input-field">
                                     <label for="trackGenre">Genre*</label><br>
@@ -354,8 +410,35 @@
                 <div class="input-wrapper">
                     <div class="input-field">
                         <label for="trackDuration">Track Duration*</label><br>
-                        <input type="text" class="input-field trackDuration required-field" id="trackDuration" placeholder="MM:SS" >
-                        <span class="error"></span>
+                        <!-- <input type="text" class="input-field trackDuration required-field" id="trackDuration" placeholder="MM:SS" >
+                        <span class="error"></span> -->
+
+                        <!-- Duration picker -->
+                        <div class='main' id="main-dropdown">
+                            <div class="dropdown-btn">
+                                <input type="text" id="show-btn-input" class="show-dropdown" data-duration="" value="" placeholder="MM:SS" disabled>
+                                <button id="btn" class="display-dropdown"></button>
+                                <span class="error"></span>
+                            </div>
+                            <div class="dropdown-ctn" style="display: none;">
+                               <div class="dropdown-field">
+                                    <div class="dropdown minutes">
+                                        <button id="dropdown-mins" class="duration-dropdown drop-btn">MM</button>
+                                        <div class="mins-ctn" id="mins-ctn">
+                                        </div>
+                                    </div>
+                                    <span class="time-dot">:</span>
+                                    <div class="dropdown seconds">
+                                        <button id="dropdown-seconds" class="duration-dropdown drop-btn">SS</button>
+                                        <div class="seconds-ctn" id="seconds-ctn">
+                                        </div>
+                                    </div>
+                                    <button class="dropdown-confirm drop-btn" id="dropdown-confirm">Confirm</button>
+                               </div>
+                            </div>
+                        </div>
+                        <!-- Duration picker -->
+
                     </div>
                     <div class="input-field">
                         <label for="trackGenre">Genre*</label><br>
@@ -543,5 +626,6 @@
         <script src="js/global.js"></script>
         <script src="js/track-form.js"></script>
         <script src="js/pop-up-terms.js"></script>
+        <script src="js/dropdown.js"></script>
     </body>
 </html>

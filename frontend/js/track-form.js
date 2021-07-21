@@ -277,6 +277,17 @@ $('#addMoreTrack').click(function(event){
         }
     })
 
+
+    // duration picker
+    form_clone.find('#main-dropdown').attr('id','main-dropdown'+index);
+    form_clone.find('#show-btn-input').attr('id','show-btn-input'+index);
+    form_clone.find('#btn').attr('id','btn'+index);
+    form_clone.find('#duration-dropdown').attr('id','duration-dropdown'+index);
+    form_clone.find('#mins-ctn').attr('id','mins-ctn'+index);
+    form_clone.find('#duration-dropdown').attr('id','duration-dropdown'+index);
+    form_clone.find('#seconds-ctn').attr('id','seconds-ctn'+index);
+    form_clone.find('#dropdown-confirm').attr('id','dropdown-confirm'+index);
+
     index++
 })
 

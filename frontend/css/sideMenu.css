@@ -137,7 +137,7 @@ cursor: pointer;
 
 
 
-/*FLoat button style*/
+/*Float button style*/
 .float-btn-ctn button{
   position: fixed;
   bottom: 12%;
@@ -167,4 +167,17 @@ cursor: pointer;
 
 button:hover{
   background:grey !important;
+}
+
+
+.sub-link{
+  width:75%;
+  margin: 0 auto
+}
+
+.sub-link a{
+  font-size: 20px;
+  /* padding-bottom:3px;
+  border-bottom: 1px solid #000; */
+  padding:5px
 }
